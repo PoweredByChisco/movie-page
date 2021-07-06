@@ -1,8 +1,13 @@
 import React from "react";
-import "./styles/Layout.css";
+import Navbar from "./Navbar";
 
-function Layout() {
-  return "Soy la navbar";
+function Layout(props) {
+  return (
+    <React.Fragment>
+      <Navbar />
+      {props.children}
+    </React.Fragment>
+  );
 }
 
 export default Layout;

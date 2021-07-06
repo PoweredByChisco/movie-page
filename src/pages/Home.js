@@ -1,6 +1,9 @@
 import React from "react";
 import "./styles/Home.css";
 import apiData from "../apiData";
+import FrontMovie from "../components/FrontMovie";
+import Genres from "../components/Genders"
+import SectionsContainer from "../components/SectionsContainer";
 
 class Home extends React.Component {
   state = {
@@ -9,7 +12,7 @@ class Home extends React.Component {
     data: undefined,
   };
 
-  componentDidMount() {
+  /*   componentDidMount() {
     this.fetchData();
   }
 
@@ -20,13 +23,18 @@ class Home extends React.Component {
     });
 
     try {
-      /* Podria hacerse este manejo a traves de .then y resolve */
       const data = 0;
     } catch (error) {}
   };
-
+ */
   render() {
-    return "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita quos perspiciatis at nulla veritatis fugit, obcaecati beatae praesentium officia iusto aperiam non cupiditate suscipit libero. Consequuntur laboriosam fuga officiis vitae.";
+    return (
+      <React.Fragment>
+        <FrontMovie />
+        <Genres />
+        <SectionsContainer />
+      </React.Fragment>
+    );
   }
 }
 
