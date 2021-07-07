@@ -6,7 +6,6 @@ class SectionMyList extends React.Component {
     loading: true,
     error: null,
     data: undefined,
-    modalIsOpen: false,
   };
 
   render() {

@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/SectionsGlobal.css";
 import PageLoading from "../PageLoading";
 import apiData from "../../apiData";
+import Movie from "../Movie";
 
 class SectionPopular extends React.Component {
   state = {
@@ -31,6 +32,9 @@ class SectionPopular extends React.Component {
   };
 
   render() {
+    const url = "https://image.tmdb.org/t/p/w342";
+    const movies = this.state.data;
+
     if (this.state.loading === true && !this.state.data) {
       return <PageLoading />;
     }
@@ -39,15 +43,16 @@ class SectionPopular extends React.Component {
       return "Error";
     }
 
-    const data = this.state.data;
-
     return (
       <div className="section-popular--container">
-        {data.map((movie) => {
+        {movies.map((movie) => {
           return (
-            <div key={movie.id} className="section-popular__movie">
-              <h1>{movie.title}</h1>
-            </div>
+            <Movie
+              key={movie.id}
+              title={movie.title}
+              duration={movie.runtime}
+              img={url + movie.poster_path}
+            />
           );
         })}
       </div>

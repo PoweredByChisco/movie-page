@@ -3,7 +3,11 @@ import "./styles/Movie.css";
 
 class Movie extends React.Component {
   render() {
-    return;
+    return <div className="movie-container">
+      <img src={this.props.img} alt="" />
+      <h1>{this.props.title}</h1>
+      <h3>{this.props.duration}</h3>
+    </div>
   }
 }
 
