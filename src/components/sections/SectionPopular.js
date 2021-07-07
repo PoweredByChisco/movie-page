@@ -9,7 +9,6 @@ class SectionPopular extends React.Component {
     loading: true,
     error: null,
     data: undefined,
-    modalIsOpen: false,
   };
 
   componentDidMount() {
@@ -32,7 +31,7 @@ class SectionPopular extends React.Component {
   };
 
   render() {
-    const url = "https://image.tmdb.org/t/p/w342";
+    const url = "https://image.tmdb.org/t/p/w500/";
     const movies = this.state.data;
 
     if (this.state.loading === true && !this.state.data) {
@@ -44,18 +43,21 @@ class SectionPopular extends React.Component {
     }
 
     return (
-      <div className="section-popular--container">
-        {movies.map((movie) => {
-          return (
-            <Movie
-              key={movie.id}
-              title={movie.title}
-              duration={movie.runtime}
-              img={url + movie.poster_path}
-            />
-          );
-        })}
-      </div>
+      <React.Fragment>
+        <h1>Popular</h1>
+        <div className="section section-popular--container">
+          {movies.map((movie) => {
+            return (
+              <Movie
+                key={movie.id}
+                title={movie.title}
+                duration={movie.runtime}
+                img={url + movie.poster_path}
+              />
+            );
+          })}
+        </div>
+      </React.Fragment>
     );
   }
 }

@@ -1,0 +1,52 @@
+:root {
+  --accent-color: #8400ff;
+  --margin-mobile: 25px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: serif;
+  background-color: black;
+  width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: sans-serif;
+  color: white;
+  font-weight: 700;
+  margin-left: var(--margin-mobile);
+}
+
+p {
+  font-weight: 700;
+  font-family: serif;
+}
+
+.navbar-container{
+    z-index: 1;
+}
+
+.btn {
+  border-radius: 15px;
+  border-color: transparent;
+  padding: 1px 10px;
+}
+
+.btn.btn-primary {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.btn.btn-secondary {
+  background-color: white;
+  color: black;
+}

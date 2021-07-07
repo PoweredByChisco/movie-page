@@ -1,0 +1,12 @@
+.movie-container {
+  display: inline;
+  width: 100px;
+  height: 150px;
+  margin-right: 20px;
+  position: relative;
+}
+
+img {
+  width: 100px;
+  height: 150px;
+}

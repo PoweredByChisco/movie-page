@@ -1,0 +1,45 @@
+.frontMovie--container {
+  width: 100vw;
+}
+
+.frontMovie__post {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.frontMovie__post h1 {
+  position: absolute;
+  bottom: 25%;
+  margin-left: 25px;
+  color: white;
+  z-index: 1;
+}
+
+.frontMovie__post img {
+  width: 100%;
+}
+
+.frontMovie__post::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #000000, #ffffff00, transparent);
+}
+
+.frontMovie__post .frontMovie__buttons {
+  display: flex;
+  position: absolute;
+  bottom: 5%;
+  margin-left: 25px;
+  font-family: sans-serif;
+  z-index: 1;
+}
+
+.frontMovie__post .frontMovie__buttons button {
+  margin-right: 20px;
+}

@@ -27,7 +27,7 @@ const apiData = {
         const movie = await this.getMovie(id);
         movies.push(movie);
       }
-      return movies
+      return movies;
     },
 
     async getPopularMovies() {
@@ -45,24 +45,37 @@ const apiData = {
       } catch (error) {}
     },
 
-    renderMovies(movies, element) {
-      const movieList = document.getElementById(element);
-      movieList.innerHTML = "";
+    async getUpcomingMovies() {
+      const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`;
+      const response = await fetch(url);
+      const rawData = await response.json();
+      return rawData.results;
+    },
 
-      movies.forEach((movie) => {
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `
-            <img src="https://image.tmdb.org/t/p/w342${movie.poster_path}" />
-            <h5>${movie.title}</h5>
-            <p>Released on <em>${movie.release_date}</em></p>
-            <h5>Review</h5>
-            <p>${movie.overview}</p>
-            `;
+    async getNUpcomingMoviesIds(n = 5) {
+      try {
+        const upcomingMovies = await this.getUpcomingMovies();
+        const ids = upcomingMovies.slice(0, n).map((movie) => movie.id);
+        return ids;
+      } catch (error) {}
+    },
 
-        movieList.appendChild(listItem);
-      });
+    async getNowPlayingMovies() {
+      const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`;
+      const response = await fetch(url);
+      const rawData = await response.json();
+      return rawData.results;
+    },
+
+    async getNNowPlayingMoviesIds(n = 5) {
+      try {
+        const upcomingMovies = await this.getUpcomingMovies();
+        const ids = upcomingMovies.slice(0, n).map((movie) => movie.id);
+        return ids;
+      } catch (error) {}
     },
   },
 };
 
 export default apiData;
+/* Me estoy repitiendo mucho */
