@@ -1,0 +1,7 @@
+.genres-container {
+  margin-top: 25px;
+  margin-left: 25px;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}

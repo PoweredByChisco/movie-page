@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/Home.css";
 import FrontMovie from "../components/FrontMovie";
-import Genres from "../components/Genders";
+import GenresContainer from "../components/GenresContainer";
 import SectionsContainer from "../components/SectionsContainer";
 
 class Home extends React.Component {
@@ -15,7 +15,7 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <FrontMovie />
-        <Genres />
+        <GenresContainer />
         <SectionsContainer />
       </React.Fragment>
     );

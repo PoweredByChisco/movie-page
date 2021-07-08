@@ -1,0 +1,21 @@
+.genre-badge--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 100px;
+  position: relative;
+  margin-right: 20px;
+}
+
+.genre-badge--container img {
+  width: 150px;
+  height: 100px;
+  border-radius: 5px;
+}
+
+.genre-badge--container h1 {
+  font-size: 1rem;
+  position: absolute;
+  margin: 0;
+}

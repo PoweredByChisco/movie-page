@@ -1,14 +1,7 @@
 const apiKey = "b89fc45c2067cbd33560270639722eae";
-const type = 0; /* Definir aqui para variar en la solicitud de la api entre movie o serie */
+const imageUrl = "https://image.tmdb.org/t/p/w500/";
 
 /* GetAPI */
-
-/* async function getPopularMovies() {
-  const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}`;
-  const response = await fetch(url);
-  const rawData = await response.json();
-  return rawData.results;
-} */
 
 const apiData = {
   movies: {
@@ -73,6 +66,17 @@ const apiData = {
         const ids = upcomingMovies.slice(0, n).map((movie) => movie.id);
         return ids;
       } catch (error) {}
+    },
+  },
+  images: {
+    async getImageForID(id) {
+      const url = `https://api.themoviedb.org/3/movie/${id}/images?api_key=${apiKey}`;
+      const response = await fetch(url);
+      const rawData = await response.json();
+      const data = rawData.backdrops;
+      const imageGenreUrl = data[0].file_path;
+      const image = imageUrl + imageGenreUrl;
+      return image;
     },
   },
 };
