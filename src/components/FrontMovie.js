@@ -45,10 +45,17 @@ class FrontMovie extends React.Component {
         <div className="frontMovie--container">
           <div className="frontMovie__post">
             <img src={url + data.backdrop_path} alt="" />
-            <h1>{data.title}</h1>
+            <div className="info">
+              <h1>{data.title}</h1>
+              <p className="description">{data.overview}</p>
+            </div>
             <div className="frontMovie__buttons">
-              <button className="btn btn-primary">Play now</button>
-              <button className="btn btn-secondary">Watch List</button>
+              <button className="btn btn-primary">
+                <p>Play now</p>
+              </button>
+              <button className="btn btn-secondary">
+                <p>Watch List</p>
+              </button>
             </div>
           </div>
         </div>

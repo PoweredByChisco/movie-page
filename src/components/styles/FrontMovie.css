@@ -1,5 +1,6 @@
 .frontMovie--container {
   width: 100vw;
+  position: relative;
 }
 
 .frontMovie__post {
@@ -13,13 +14,20 @@
   overflow: hidden;
 }
 
-.frontMovie__post h1 {
-  font-size: 2rem;
+.info {
   position: absolute;
   bottom: 25%;
   left: 5px;
   color: white;
   z-index: 1;
+}
+
+.info h1{
+  font-size: 2rem;
+}
+
+.info p {
+  visibility: hidden;
 }
 
 .frontMovie__post img {
@@ -42,10 +50,73 @@
   position: absolute;
   bottom: 5%;
   margin-left: 25px;
-  font-family: sans-serif;
   z-index: 1;
+}
+
+.frontMovie__buttons .btn p {
+  margin-bottom: 0;
+  font-family: sans-serif;
 }
 
 .frontMovie__post .frontMovie__buttons button {
   margin-right: 20px;
+  font-size: 1rem;
+}
+
+/* Tablet */
+
+@media (min-width: 700px) {
+  .frontMovie__post h1 {
+    font-size: 3rem;
+  }
+
+  .frontMovie__buttons .btn p {
+    margin-bottom: 0;
+    font-family: sans-serif;
+    font-size: 1.5rem;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 920px) {
+  .frontMovie__post {
+    min-height: 300px;
+    max-height: 90vh;
+  }
+
+  .info {
+    border-radius: 15px;
+    background-color: #00000059;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 35%;
+    left: 50px;
+    width: 50%;
+  }
+
+  .info h1 {
+    font-size: 6rem;
+    margin: 0;
+  }
+
+  .info p {
+    visibility: visible;
+    font-family: sans-serif;
+  }
+
+  .frontMovie__post .frontMovie__buttons {
+    display: flex;
+    position: absolute;
+    bottom: 20%;
+    left: 50px;
+  }
+
+  .frontMovie__buttons .btn p {
+    margin-bottom: 0;
+    font-family: sans-serif;
+    font-size: 2.5rem;
+  }
 }

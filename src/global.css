@@ -14,7 +14,7 @@
 body {
   font-family: serif;
   background-color: black;
-  width: 100%;
+  width: 100vw;
 }
 
 h1,
@@ -31,8 +31,8 @@ p {
   font-family: serif;
 }
 
-.navbar-container{
-    z-index: 2;
+.navbar-container {
+  z-index: 2;
 }
 
 .btn {
@@ -50,3 +50,16 @@ p {
   background-color: white;
   color: black;
 }
+
+*::-webkit-scrollbar {
+  visibility: hidden;
+}
+
+*::-webkit-scrollbar-thumb {
+  visibility: hidden;
+}
+
+/* Tablet */
+
+/* Desktop */
+
