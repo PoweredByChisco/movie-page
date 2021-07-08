@@ -9,4 +9,13 @@
 img {
   width: 100px;
   height: 150px;
+  border-radius: 5px;
+}
+
+.movie-container h1 {
+  visibility: hidden;
+}
+
+h3 {
+  visibility: hidden;
 }

@@ -46,7 +46,7 @@ class SectionMyList extends React.Component {
       <React.Fragment>
         <h1>My List</h1>
         <div className="section section-nowplaying--container">
-          {movies.map((movie) => {
+        {movies.map((movie) => {
             return (
               <Movie
                 key={movie.id}

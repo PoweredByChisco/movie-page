@@ -4,21 +4,27 @@
 
 .frontMovie__post {
   display: flex;
+  justify-content: center;
   align-items: center;
   width: 100%;
   position: relative;
+  min-height: 150px;
+  max-height: 300px;
+  overflow: hidden;
 }
 
 .frontMovie__post h1 {
+  font-size: 2rem;
   position: absolute;
   bottom: 25%;
-  margin-left: 25px;
+  left: 5px;
   color: white;
   z-index: 1;
 }
 
 .frontMovie__post img {
   width: 100%;
+  height: max-content;
 }
 
 .frontMovie__post::after {
