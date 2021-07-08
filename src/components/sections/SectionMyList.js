@@ -3,12 +3,14 @@ import "./styles/SectionsGlobal.css";
 import PageLoading from "../PageLoading";
 import apiData from "../../apiData";
 import Movie from "../Movie";
+import Modal from "../Modal";
 
 class SectionMyList extends React.Component {
   state = {
     loading: true,
     error: null,
     data: undefined,
+    modalIsOpen: false,
   };
 
   componentDidMount() {
@@ -30,6 +32,14 @@ class SectionMyList extends React.Component {
     }
   };
 
+  handleOpenModal = (e) => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  handleCloseModal = (e) => {
+    this.setState({ modalIsOpen: false });
+  };
+
   render() {
     const url = "https://image.tmdb.org/t/p/w500/";
     const movies = this.state.data;
@@ -46,13 +56,16 @@ class SectionMyList extends React.Component {
       <React.Fragment>
         <h1>My List</h1>
         <div className="section section-nowplaying--container">
-        {movies.map((movie) => {
+          {movies.map((movie) => {
             return (
               <Movie
                 key={movie.id}
                 title={movie.title}
                 duration={movie.runtime}
                 img={url + movie.poster_path}
+                onOpenModal={this.handleOpenModal}
+                onCloseModal={this.handleCloseModal}
+                modalIsOpen={this.state.modalIsOpen}
               />
             );
           })}

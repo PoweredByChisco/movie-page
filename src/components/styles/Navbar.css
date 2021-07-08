@@ -25,6 +25,10 @@
 
 /* Desktop */
 
-@media (min-width: 700px) {
-
+@media (min-width: 920px) {
+  @media (min-width: 700px) {
+    .navbar-container p {
+      font-size: 2rem;
+    }
+  }
 }
