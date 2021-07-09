@@ -10,7 +10,6 @@ class SectionMyList extends React.Component {
     loading: true,
     error: null,
     data: undefined,
-    modalIsOpen: false,
   };
 
   componentDidMount() {
@@ -32,18 +31,9 @@ class SectionMyList extends React.Component {
     }
   };
 
-  handleOpenModal = (e) => {
-    this.setState({ modalIsOpen: true });
-  };
-
-  handleCloseModal = (e) => {
-    this.setState({ modalIsOpen: false });
-  };
-
   render() {
     const url = "https://image.tmdb.org/t/p/w500/";
     const movies = this.state.data;
-
     if (this.state.loading === true && !this.state.data) {
       return <PageLoading />;
     }
@@ -63,9 +53,6 @@ class SectionMyList extends React.Component {
                 title={movie.title}
                 duration={movie.runtime}
                 img={url + movie.poster_path}
-                onOpenModal={this.handleOpenModal}
-                onCloseModal={this.handleCloseModal}
-                modalIsOpen={this.state.modalIsOpen}
               />
             );
           })}

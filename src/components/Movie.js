@@ -6,23 +6,28 @@ import ModalMovie from "./ModalMovie";
 class Movie extends React.Component {
   state = {
     data: this.props,
-  }
-  
+    modalIsOpen: false,
+  };
+
+  handleOpenModal = (e) => {
+    this.setState({ modalIsOpen: true, selectedData: this.props });
+  };
+
+  handleCloseModal = (e) => {
+    this.setState({ modalIsOpen: false });
+  };
 
   render() {
     return (
       <React.Fragment>
-        <div className="movie-container" onClick={this.props.onOpenModal}>
+        <div className="movie-container" onClick={this.handleOpenModal}>
           <img src={this.props.img} alt="" />
           <div className="info-container">
             <h1>{this.props.title}</h1>
             <h3>{this.props.duration} min</h3>
           </div>
         </div>
-        <Modal
-          isOpen={this.props.modalIsOpen}
-          onClose={this.props.onCloseModal}
-        >
+        <Modal isOpen={this.state.modalIsOpen} onClose={this.handleCloseModal}>
           <ModalMovie src={this.state.data.img} title={this.state.data.title} />
         </Modal>
       </React.Fragment>

@@ -11,6 +11,11 @@
   z-index: 3;
 }
 
+.Modal__off {
+  width: 100%;
+  height: 40%;
+}
+
 .Modal__container {
   position: absolute;
   bottom: 0;
