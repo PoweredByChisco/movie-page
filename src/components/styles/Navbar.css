@@ -1,11 +1,11 @@
 .navbar-container {
   background-image: linear-gradient(to bottom, #000000c9, rgba(0, 77, 122, 0));
   width: 100vw;
-
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
+  z-index: ;
 }
 
 .navbar-container p {

@@ -32,7 +32,7 @@ class SectionMyList extends React.Component {
   };
 
   render() {
-    const url = "https://image.tmdb.org/t/p/w500/";
+    const url = "https://image.tmdb.org/t/p/original/";
     const movies = this.state.data;
     if (this.state.loading === true && !this.state.data) {
       return <PageLoading />;
@@ -53,6 +53,8 @@ class SectionMyList extends React.Component {
                 title={movie.title}
                 duration={movie.runtime}
                 img={url + movie.poster_path}
+                backdrop={url + movie.backdrop_path}
+                overview={movie.overview}
               />
             );
           })}

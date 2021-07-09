@@ -28,7 +28,12 @@ class Movie extends React.Component {
           </div>
         </div>
         <Modal isOpen={this.state.modalIsOpen} onClose={this.handleCloseModal}>
-          <ModalMovie src={this.state.data.img} title={this.state.data.title} />
+          <ModalMovie
+            src={this.state.data.img}
+            title={this.state.data.title}
+            overview={this.state.data.overview}
+            backdrop={this.state.data.backdrop}
+          />
         </Modal>
       </React.Fragment>
     );

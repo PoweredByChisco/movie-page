@@ -28,7 +28,7 @@ h3 {
 
 p {
   font-weight: 700;
-  font-family: serif;
+  font-family: sans-serif;
 }
 
 .navbar-container {
@@ -63,3 +63,12 @@ p {
 
 /* Desktop */
 
+@media (min-width: 920px){
+  *::-webkit-scrollbar {
+    visibility: visible;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    visibility: visible;
+  }
+}

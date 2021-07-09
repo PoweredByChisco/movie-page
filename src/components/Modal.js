@@ -12,7 +12,7 @@ function Modal(props) {
       <div className="Modal__off" onClick={props.onClose}></div>
       <div className="Modal__container">
         <button onClick={props.onClose} className="Modal__close-button">
-          x
+          Cerrar
         </button>
         {props.children}
       </div>

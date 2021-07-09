@@ -9,7 +9,6 @@ class SectionComingSoon extends React.Component {
     loading: true,
     error: null,
     data: undefined,
-    modalIsOpen: false,
   };
 
   componentDidMount() {
@@ -29,14 +28,6 @@ class SectionComingSoon extends React.Component {
     } catch (error) {
       this.setState({ loading: false, error: error });
     }
-  };
-
-  handleOpenModal = (e) => {
-    this.setState({ modalIsOpen: true });
-  };
-
-  handleCloseModal = (e) => {
-    this.setState({ modalIsOpen: false });
   };
 
   render() {
@@ -63,9 +54,8 @@ class SectionComingSoon extends React.Component {
                 title={movie.title}
                 duration={movie.runtime}
                 img={url + movie.poster_path}
-                onOpenModal={this.handleOpenModal}
-                onCloseModal={this.handleCloseModal}
-                modalIsOpen={this.state.modalIsOpen}
+                backdrop={url + movie.backdrop_path}
+                overview={movie.overview}
               />
             );
           })}
