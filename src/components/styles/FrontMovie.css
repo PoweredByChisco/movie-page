@@ -18,16 +18,16 @@
 .info {
   width: 100px;
   position: absolute;
-  bottom: 10px;
+  height: 50px;
   height: 100px;
   left: 25px;
   color: white;
-  z-index: 2;
+  z-index: 1;
 }
 
 .info h1{
   margin: 0;
-  font-size: 1rem;
+  font-size: 2rem;
 }
 
 .info p {
@@ -70,11 +70,15 @@
 /* Tablet */
 
 @media (min-width: 700px) {
+  .info{
+    top: 100px;
+  }
+
   .frontMovie__post h1 {
     font-size: 3rem;
   }
 
-  .frontMovie__buttons .btn p {
+  .frontMovie--container .frontMovie__buttons .btn p {
     margin-bottom: 0;
     font-family: sans-serif;
     font-size: 1.5rem;
@@ -91,17 +95,17 @@
 
   .info {
     overflow: hidden;
-    height: auto;
-    max-height: 400px;
+    height: fit-content;
+    max-height: 300px;
     border-radius: 15px;
     background-color: #00000059;
     padding: 25px;
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 150px;
     left: 50px;
-    width: 50%;
+    width: 533px;
   }
 
   .info h1 {
@@ -114,14 +118,13 @@
     font-family: sans-serif;
   }
 
-  .frontMovie__post .frontMovie__buttons {
-    display: flex;
-    position: absolute;
-    bottom: 20%;
-    left: 50px;
+
+
+  .frontMovie--container .frontMovie__buttons .btn {
+    margin-right: 40px;
   }
 
-  .frontMovie__buttons .btn p {
+  .frontMovie--container .frontMovie__buttons .btn p {
     margin-bottom: 0;
     font-family: sans-serif;
     font-size: 2.5rem;

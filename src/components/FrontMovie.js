@@ -1,4 +1,4 @@
-import React from "react";
+  import React from "react";
 import "./styles/FrontMovie.css";
 import apiData from "../apiData";
 import PageLoading from "../components/PageLoading";
