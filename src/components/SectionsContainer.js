@@ -4,7 +4,6 @@ import SectionMyList from "./sections/SectionMyList";
 import SectionPopular from "./sections/SectionPopular";
 import SectionComingSoon from "./sections/SectionComingSoon";
 import PageLoading from "./PageLoading";
-import apiData from "../apiData";
 
 class SectionsContainer extends React.Component {
   state = {

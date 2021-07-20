@@ -3,7 +3,6 @@ import "./styles/SectionsGlobal.css";
 import PageLoading from "../PageLoading";
 import apiData from "../../apiData";
 import Movie from "../Movie";
-import Modal from "../Modal";
 
 class SectionMyList extends React.Component {
   state = {
