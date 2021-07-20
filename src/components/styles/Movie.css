@@ -20,9 +20,10 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  visibility: hidden;
+  opacity: 0;
   z-index: 1;
   padding: 175px 25px 0;
+  transition: opacity 500ms;
 }
 
 .movie-container .info-container h1 {
@@ -52,11 +53,11 @@
 
 /* Desktop */
 
-
 @media (min-width: 920px) {
   .movie-container {
     width: 200px;
     height: 300px;
+    transition: all 200ms linear;
   }
 
   .movie-container img {
@@ -64,9 +65,13 @@
     height: 300px;
   }
 
+  .movie-container:hover {
+    transform: translateY(-10px);
+    transition: all 200ms linear;
+  }
+
   .movie-container:hover .info-container {
-    animation: fadeIn;
-    animation-duration: 2s;
-    visibility: visible;
+    transition: opacity 500ms;
+    opacity: 1;
   }
 }
