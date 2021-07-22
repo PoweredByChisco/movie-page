@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/Modal.css";
-import { Transition } from 'react-transition-group';
 
 function Modal(props) {
   if (!props.isOpen) {

@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/Movie.css";
 import Modal from "./Modal";
 import ModalMovie from "./ModalMovie";
+import { CSSTransition } from "react-transition-group";
 
 class Movie extends React.Component {
   state = {
@@ -27,14 +28,26 @@ class Movie extends React.Component {
             <h3>{this.props.duration} min</h3>
           </div>
         </div>
-        <Modal isOpen={this.state.modalIsOpen} onClose={this.handleCloseModal}>
-          <ModalMovie
-            src={this.state.data.img}
-            title={this.state.data.title}
-            overview={this.state.data.overview}
-            backdrop={this.state.data.backdrop}
-          />
-        </Modal>
+        <CSSTransition
+          timeout={300}
+          in={this.state.modalIsOpen}
+          classNames="show"
+          unmountOnExit
+          onEnter={() => console.log("On enter")}
+          onExiting={() => console.log("Se ejecuto on Exited")}
+        >
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onClose={this.handleCloseModal}
+          >
+            <ModalMovie
+              src={this.state.data.img}
+              title={this.state.data.title}
+              overview={this.state.data.overview}
+              backdrop={this.state.data.backdrop}
+            />
+          </Modal>
+        </CSSTransition>
       </React.Fragment>
     );
   }
