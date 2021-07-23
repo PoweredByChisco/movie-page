@@ -22,8 +22,12 @@ class SectionMyList extends React.Component {
     });
 
     try {
-      const data = await apiData.movies.getData(10, "movie", "now_playing");
-      this.setState({ loading: false, data: data });
+      /* const data = await apiData.movies.getData(10, "movie", "now_playing"); */
+      const data2 = [...this.props.data]
+      /* const data = this.props.data */
+      this.setState({loading: false, data:data2});
+      /* console.log(data2)
+      this.setState({ loading: false, data: data }); */
     } catch (error) {
       this.setState({ loading: false, error: error });
     }

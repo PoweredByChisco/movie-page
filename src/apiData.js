@@ -25,11 +25,10 @@ const apiData = {
     async getData(n = 5, type, list) {
       try {
         const Movies = await this.getMovies(type, list);
-        console.log(Movies.results)
+
         const ids = Movies.results.slice(0, n).map((movie) => movie.id);
-        console.log(ids)
+
         const movies = [];
-        console.log(movies)
 
         for (let id of ids) {
           const movie = await this.getMovie(id, type);
@@ -37,7 +36,7 @@ const apiData = {
         }
         return movies;
       } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
       }
     },
 

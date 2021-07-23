@@ -48,7 +48,7 @@ class SectionsContainer extends React.Component {
 
     return (
       <React.Fragment>
-        <SectionMyList data={this.state.data.popular}/>
+        <SectionMyList data={this.state.data.now}/>
         {/* <SectionPopular />
         <SectionComingSoon /> */}
       </React.Fragment>
