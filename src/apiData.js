@@ -5,8 +5,8 @@ const imageUrl = "https://image.tmdb.org/t/p/w500/";
 
 const apiData = {
   movies: {
-    async getMovie(id) {
-      const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
+    async getMovie(id, type) {
+      const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}`;
       const response = await fetch(url);
       const rawData = await response.json();
       return rawData;
@@ -24,7 +24,7 @@ const apiData = {
     },
 
     async getPopularMovies() {
-      const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}`;
+      const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
       const response = await fetch(url);
       const rawData = await response.json();
       return rawData.results;
