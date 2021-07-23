@@ -4,6 +4,7 @@ import SectionMyList from "./sections/SectionMyList";
 import SectionPopular from "./sections/SectionPopular";
 import SectionComingSoon from "./sections/SectionComingSoon";
 import PageLoading from "./PageLoading";
+import apiData from "../apiData";
 
 class SectionsContainer extends React.Component {
   state = {
@@ -16,7 +17,7 @@ class SectionsContainer extends React.Component {
     },
   };
 
-/*   componentDidMount() {
+  componentDidMount() {
     this.fetchData();
   }
 
@@ -27,20 +28,12 @@ class SectionsContainer extends React.Component {
     });
 
     try {
-      const NowIds = await apiData.movies.getNNowPlayingMoviesIds(10);
-      const PopularIds = await apiData.movies.getNPopularMoviesIds(10);
-      const UpcomingIds = await apiData.movies.getNUpcomingMoviesIds(10);
-      const NowData = await apiData.movies.getNMovies(NowIds);
-      const PopularData = await apiData.movies.getNMovies(PopularIds);
-      const UpcomingData = await apiData.movies.getNMovies(UpcomingIds);
-      this.setState({
-        loading: false,
-        data: { now: NowData, popular: PopularData, upcoming: UpcomingData },
-      });
+      const data = await apiData.movies.getData(10, "movie", "now_playing");
+      this.setState({ loading: false, data: { now : data } });
     } catch (error) {
       this.setState({ loading: false, error: error });
     }
-  }; Estoy intentando desde aqui obtener todos los datos necesarios para asi solo renderizar un componente de section*/
+  };
 
   render() {
     if (this.state.loading === true && !this.state.data) {
@@ -55,9 +48,9 @@ class SectionsContainer extends React.Component {
 
     return (
       <React.Fragment>
-        <SectionMyList />
-        <SectionPopular />
-        <SectionComingSoon />
+        <SectionMyList data={this.state.data.popular}/>
+        {/* <SectionPopular />
+        <SectionComingSoon /> */}
       </React.Fragment>
     );
   }

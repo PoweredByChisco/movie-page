@@ -22,8 +22,7 @@ class SectionMyList extends React.Component {
     });
 
     try {
-      const ids = await apiData.movies.getNNowPlayingMoviesIds(10);
-      const data = await apiData.movies.getNMovies(ids);
+      const data = await apiData.movies.getData(10, "movie", "now_playing");
       this.setState({ loading: false, data: data });
     } catch (error) {
       this.setState({ loading: false, error: error });
