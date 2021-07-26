@@ -11,7 +11,7 @@ class Movie extends React.Component {
   };
 
   handleOpenModal = (e) => {
-    this.setState({ modalIsOpen: true, selectedData: this.props });
+    this.setState({ modalIsOpen: true, selectedData: this.props }); /* Ojo al selectedData */
   };
 
   handleCloseModal = (e) => {

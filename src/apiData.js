@@ -5,26 +5,47 @@ const imageUrl = "https://image.tmdb.org/t/p/w500/";
 
 const apiData = {
   movies: {
-    async getMovie(id) {
-      const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
+    /* Setters */
+    async getMovie(type, id) {
+      const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}`;
       const response = await fetch(url);
       const rawData = await response.json();
       return rawData;
     },
 
-    async getNMovies(id) {
-      const ids = id;
-      const movies = [];
-
-      for (id of ids) {
-        const movie = await this.getMovie(id);
-        movies.push(movie);
-      }
-      return movies;
+    async getMovies(type, list) {
+      const url = `https://api.themoviedb.org/3/${type}/${list}?api_key=${apiKey}`;
+      const response = await fetch(url);
+      const rawData = await response.json();
+      return rawData;
     },
 
-    async getPopularMovies() {
-      const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}`;
+    /* Getters */
+
+    async getData(n = 5, type, list) {
+      try {
+        const Movies = await this.getMovies(type, list);
+        const ids = Movies.results.slice(0, n).map((movie) => movie.id);
+
+        if (n === 1) {
+          const id = ids[0];
+          return this.getMovie(type, id);
+        } else {
+          const movies = [];
+
+          for (let id of ids) {
+            const movie = await this.getMovie(type, id);
+            movies.push(movie);
+          }
+          return movies;
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+
+    /* async getPopularMovies() {
+      const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
       const response = await fetch(url);
       const rawData = await response.json();
       return rawData.results;
@@ -66,7 +87,7 @@ const apiData = {
         const ids = upcomingMovies.slice(0, n).map((movie) => movie.id);
         return ids;
       } catch (error) {}
-    },
+    }, */
   },
   images: {
     async getImageForID(id) {

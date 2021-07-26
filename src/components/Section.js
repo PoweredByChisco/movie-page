@@ -1,10 +1,10 @@
 import React from "react";
-import "./styles/SectionsGlobal.css";
-import PageLoading from "../PageLoading";
-import apiData from "../../apiData";
-import Movie from "../Movie";
+import "./styles/Sections.css";
+import PageLoading from "./PageLoading";
+import apiData from "../apiData";
+import Movie from "./Movie";
 
-class SectionComingSoon extends React.Component {
+class Section extends React.Component {
   state = {
     loading: true,
     error: null,
@@ -22,8 +22,9 @@ class SectionComingSoon extends React.Component {
     });
 
     try {
-      const ids = await apiData.movies.getNUpcomingMoviesIds(10);
-      const data = await apiData.movies.getNMovies(ids);
+      const type = this.props.type
+      const list = this.props.list
+      const data = await apiData.movies.getData(10, type, list);
       this.setState({ loading: false, data: data });
     } catch (error) {
       this.setState({ loading: false, error: error });
@@ -31,9 +32,8 @@ class SectionComingSoon extends React.Component {
   };
 
   render() {
-    const url = "https://image.tmdb.org/t/p/w500/";
+    const url = "https://image.tmdb.org/t/p/original/";
     const movies = this.state.data;
-
     if (this.state.loading === true && !this.state.data) {
       return <PageLoading />;
     }
@@ -44,9 +44,8 @@ class SectionComingSoon extends React.Component {
 
     return (
       <React.Fragment>
-        <h1>Coming Soon</h1>
-
-        <div className="section section-upcoming--container">
+        <h1>{this.props.title}</h1>
+        <div className="section">
           {movies.map((movie) => {
             return (
               <Movie
@@ -65,4 +64,4 @@ class SectionComingSoon extends React.Component {
   }
 }
 
-export default SectionComingSoon;
+export default Section;
