@@ -45,7 +45,7 @@ class Section extends React.Component {
     return (
       <React.Fragment>
         <h1>{this.props.title}</h1>
-        <div className="section section-nowplaying--container">
+        <div className="section">
           {movies.map((movie) => {
             return (
               <Movie

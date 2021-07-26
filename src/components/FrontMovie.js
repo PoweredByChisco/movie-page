@@ -21,8 +21,7 @@ class FrontMovie extends React.Component {
     });
 
     try {
-      const id = await apiData.movies.getMovies("movie", "popular");
-      const data = await apiData.movies.getMovie(id, "movie");
+      const data = await apiData.movies.getData(1, "movie", "popular");
       this.setState({ loading: false, data: data });
     } catch (error) {
       this.setState({ loading: false, error: error });

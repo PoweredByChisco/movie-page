@@ -6,7 +6,7 @@ const imageUrl = "https://image.tmdb.org/t/p/w500/";
 const apiData = {
   movies: {
     /* Setters */
-    async getMovie(id, type) {
+    async getMovie(type, id) {
       const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}`;
       const response = await fetch(url);
       const rawData = await response.json();
@@ -25,16 +25,20 @@ const apiData = {
     async getData(n = 5, type, list) {
       try {
         const Movies = await this.getMovies(type, list);
-
         const ids = Movies.results.slice(0, n).map((movie) => movie.id);
 
-        const movies = [];
+        if (n === 1) {
+          const id = ids[0];
+          return this.getMovie(type, id);
+        } else {
+          const movies = [];
 
-        for (let id of ids) {
-          const movie = await this.getMovie(id, type);
-          movies.push(movie);
+          for (let id of ids) {
+            const movie = await this.getMovie(type, id);
+            movies.push(movie);
+          }
+          return movies;
         }
-        return movies;
       } catch (error) {
         console.log(error.message);
       }
