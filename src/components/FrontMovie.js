@@ -1,4 +1,4 @@
-  import React from "react";
+import React from "react";
 import "./styles/FrontMovie.css";
 import apiData from "../apiData";
 import PageLoading from "../components/PageLoading";
@@ -21,8 +21,8 @@ class FrontMovie extends React.Component {
     });
 
     try {
-      const id = await apiData.movies.getNPopularMoviesIds(1);
-      const data = await apiData.movies.getMovie(id);
+      const id = await apiData.movies.getMovies("movie", "popular");
+      const data = await apiData.movies.getMovie(id, "movie");
       this.setState({ loading: false, data: data });
     } catch (error) {
       this.setState({ loading: false, error: error });

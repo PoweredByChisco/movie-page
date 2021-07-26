@@ -1,10 +1,10 @@
 import React from "react";
-import "./styles/SectionsGlobal.css";
-import PageLoading from "../PageLoading";
-import apiData from "../../apiData";
-import Movie from "../Movie";
+import "./styles/Sections.css";
+import PageLoading from "./PageLoading";
+import apiData from "../apiData";
+import Movie from "./Movie";
 
-class SectionMyList extends React.Component {
+class Section extends React.Component {
   state = {
     loading: true,
     error: null,
@@ -22,12 +22,10 @@ class SectionMyList extends React.Component {
     });
 
     try {
-      /* const data = await apiData.movies.getData(10, "movie", "now_playing"); */
-      const data2 = [...this.props.data]
-      /* const data = this.props.data */
-      this.setState({loading: false, data:data2});
-      /* console.log(data2)
-      this.setState({ loading: false, data: data }); */
+      const type = this.props.type
+      const list = this.props.list
+      const data = await apiData.movies.getData(10, type, list);
+      this.setState({ loading: false, data: data });
     } catch (error) {
       this.setState({ loading: false, error: error });
     }
@@ -46,7 +44,7 @@ class SectionMyList extends React.Component {
 
     return (
       <React.Fragment>
-        <h1>My List</h1>
+        <h1>{this.props.title}</h1>
         <div className="section section-nowplaying--container">
           {movies.map((movie) => {
             return (
@@ -66,4 +64,4 @@ class SectionMyList extends React.Component {
   }
 }
 
-export default SectionMyList;
+export default Section;
