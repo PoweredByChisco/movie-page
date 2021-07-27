@@ -24,7 +24,7 @@
   z-index: 1;
 }
 
-.info h1{
+.info h1 {
   margin: 0;
   font-size: 1.5rem;
 }
@@ -69,8 +69,9 @@
 /* Tablet */
 
 @media (min-width: 700px) {
-  .info{
+  .info {
     top: 100px;
+    max-width: 300px;
   }
 
   .frontMovie__post h1 {
@@ -93,7 +94,7 @@
   }
 
   .info {
-    
+    max-width: none;
     height: fit-content;
     max-height: 300px;
     border-radius: 15px;
@@ -118,8 +119,6 @@
     font-family: sans-serif;
     margin-bottom: 0;
   }
-
-
 
   .frontMovie--container .frontMovie__buttons .btn {
     margin-right: 40px;
