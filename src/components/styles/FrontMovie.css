@@ -34,8 +34,7 @@
 }
 
 .frontMovie__post img {
-  width: 100%;
-  height: max-content;
+  width: 100vw;
 }
 
 .frontMovie__post::after {
