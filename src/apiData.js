@@ -7,14 +7,14 @@ const apiData = {
   imdb: {
     /* Setters */
     async getMovie(type, id) {
-      const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}`;
+      const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}&language=es-MX`;
       const response = await fetch(url);
       const rawData = await response.json();
       return rawData;
     },
 
-    async getMovies(type, list) {
-      const url = `https://api.themoviedb.org/3/${type}/${list}?api_key=${apiKey}`;
+    async getMovies(type, list, page) {
+      const url = `https://api.themoviedb.org/3/${type}/${list}?api_key=${apiKey}&language=es-MX&page=${page}&region=MX`;
       const response = await fetch(url);
       const rawData = await response.json();
       return rawData;
@@ -22,9 +22,9 @@ const apiData = {
 
     /* Getters */
 
-    async getData(n = 5, type, list) {
+    async getData(n = 5, type, list, page) {
       try {
-        const Movies = await this.getMovies(type, list);
+        const Movies = await this.getMovies(type, list, page);
         const ids = Movies.results.slice(0, n).map((movie) => movie.id);
 
         if (n === 1) {

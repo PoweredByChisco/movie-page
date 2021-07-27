@@ -1,14 +1,16 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Layout from "./Layout";
-import Home from "../pages/Home";
+import Movies from "../pages/Movies";
+import Tv from "../pages/Tv";
 
 function App() {
   return (
     <BrowserRouter>
       <Layout>
         <Switch>
-          <Route exact path="" component={Home} />
+          <Route exact path="/tv" component={Tv} />
+          <Route exact path="" component={Movies} />
         </Switch>
       </Layout>
     </BrowserRouter>

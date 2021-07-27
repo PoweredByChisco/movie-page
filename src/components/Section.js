@@ -24,7 +24,9 @@ class Section extends React.Component {
     try {
       const type = this.props.type
       const list = this.props.list
-      const data = await apiData.imdb.getData(10, type, list);
+      const page = this.props.page
+
+      const data = await apiData.imdb.getData(20, type, list, page);
       this.setState({ loading: false, data: data });
     } catch (error) {
       this.setState({ loading: false, error: error });
