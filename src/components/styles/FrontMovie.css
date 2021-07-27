@@ -16,9 +16,8 @@
 }
 
 .info {
-  width: 100px;
+  max-width: 140px;
   position: absolute;
-  height: 50px;
   height: 100px;
   left: 25px;
   color: white;
@@ -27,7 +26,7 @@
 
 .info h1{
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .info p {
