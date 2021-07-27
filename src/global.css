@@ -26,6 +26,16 @@ h3 {
   margin-left: var(--margin-mobile);
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(216, 216, 216);
+  text-decoration: none;
+}
+
 p {
   font-weight: 700;
   font-family: sans-serif;

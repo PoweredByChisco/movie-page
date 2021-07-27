@@ -13,7 +13,7 @@ function ModalMovie(props) {
         <p>{props.overview}</p>
         <div className="frontMovie__buttons">
           <button className="btn btn-primary">
-            <p>Play now</p>
+            <a href={props.homepage}><p>+ Info</p></a>
           </button>
           <button className="btn btn-secondary">
             <p>Watch List</p>

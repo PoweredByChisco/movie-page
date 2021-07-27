@@ -55,6 +55,7 @@ class Section extends React.Component {
                 img={url + movie.poster_path}
                 backdrop={url + movie.backdrop_path}
                 overview={movie.overview}
+                homepage={movie.homepage}
               />
             );
           })}

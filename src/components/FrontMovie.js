@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/FrontMovie.css";
 import apiData from "../apiData";
 import PageLoading from "../components/PageLoading";
+import { Link } from "react-router-dom";
 
 class FrontMovie extends React.Component {
   state = {
@@ -50,7 +51,7 @@ class FrontMovie extends React.Component {
             </div>
             <div className="frontMovie__buttons">
               <button className="btn btn-primary">
-                <p>Play now</p>
+                <a href={data.homepage}><p>+ Info</p></a>
               </button>
               <button className="btn btn-secondary">
                 <p>Watch List</p>

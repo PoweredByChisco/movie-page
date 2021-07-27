@@ -45,6 +45,7 @@ class Movie extends React.Component {
               title={this.state.data.title}
               overview={this.state.data.overview}
               backdrop={this.state.data.backdrop}
+              homepage={this.state.data.homepage}
             />
           </Modal>
         </CSSTransition>
