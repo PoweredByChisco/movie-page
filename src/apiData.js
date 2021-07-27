@@ -4,7 +4,7 @@ const imageUrl = "https://image.tmdb.org/t/p/w500/";
 /* GetAPI */
 
 const apiData = {
-  movies: {
+  imdb: {
     /* Setters */
     async getMovie(type, id) {
       const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}`;
@@ -42,6 +42,16 @@ const apiData = {
       } catch (error) {
         console.log(error.message);
       }
+    },
+
+    async getImageForID(id) {
+      const url = `https://api.themoviedb.org/3/movie/${id}/images?api_key=${apiKey}`;
+      const response = await fetch(url);
+      const rawData = await response.json();
+      const data = rawData.backdrops;
+      const imageGenreUrl = data[0].file_path;
+      const image = imageUrl + imageGenreUrl;
+      return image;
     },
 
     /* async getPopularMovies() {
@@ -89,18 +99,6 @@ const apiData = {
       } catch (error) {}
     }, */
   },
-  images: {
-    async getImageForID(id) {
-      const url = `https://api.themoviedb.org/3/movie/${id}/images?api_key=${apiKey}`;
-      const response = await fetch(url);
-      const rawData = await response.json();
-      const data = rawData.backdrops;
-      const imageGenreUrl = data[0].file_path;
-      const image = imageUrl + imageGenreUrl;
-      return image;
-    },
-  },
 };
 
 export default apiData;
-/* Me estoy repitiendo mucho */

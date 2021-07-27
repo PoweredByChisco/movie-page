@@ -24,7 +24,7 @@ class Section extends React.Component {
     try {
       const type = this.props.type
       const list = this.props.list
-      const data = await apiData.movies.getData(10, type, list);
+      const data = await apiData.imdb.getData(10, type, list);
       this.setState({ loading: false, data: data });
     } catch (error) {
       this.setState({ loading: false, error: error });
@@ -32,7 +32,7 @@ class Section extends React.Component {
   };
 
   render() {
-    const url = "https://image.tmdb.org/t/p/original/";
+    const url = "https://image.tmdb.org/t/p/w500/";
     const movies = this.state.data;
     if (this.state.loading === true && !this.state.data) {
       return <PageLoading />;
