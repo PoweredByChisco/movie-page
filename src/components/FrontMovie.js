@@ -24,7 +24,8 @@ class FrontMovie extends React.Component {
     try {
       const type = this.props.type
 
-      const data = await apiData.imdb.getData(1, type, "popular");
+      const dataIds = await apiData.imdb.getList(type, "popular");
+      const data = await apiData.imdb.getDataList(1, "movie", dataIds)
       this.setState({ loading: false, data: data });
     } catch (error) {
       this.setState({ loading: false, error: error });

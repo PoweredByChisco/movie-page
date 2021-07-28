@@ -6,35 +6,51 @@ const imageUrl = "https://image.tmdb.org/t/p/w500/";
 const apiData = {
   imdb: {
     /* Setters */
-    async getMovie(type, id) {
+    async getId(type, id) {
       const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}&language=es-MX`;
       const response = await fetch(url);
       const rawData = await response.json();
       return rawData;
     },
 
-    async getMovies(type, list, page) {
-      const url = `https://api.themoviedb.org/3/${type}/${list}?api_key=${apiKey}&language=es-MX&page=${page}&region=MX`;
+    async getList(type, list, page) {
+      const url = `https://api.themoviedb.org/3/${type}/${list}?api_key=${apiKey}&language=es-MX&page=${page}&region=US`;
       const response = await fetch(url);
       const rawData = await response.json();
       return rawData;
     },
 
+    async getDataDiscover(
+      type,
+      language = "es-MX",
+      sort = "popularity.desc",
+      page = 1,
+      cast,
+      people,
+      companies,
+      genres,
+      providers
+    ) {
+      const url = `https://api.themoviedb.org/3/discover/${type}/?api_key=${apiKey}&language=${language}&sort_by=${sort}&include_adult=true&include_video=true&page=${page}&with_cast=${cast}&with_people=${people}&with_companies=${companies}&with_genres=${genres}&with_watch_providers=${providers}`;
+      const response = await fetch(url);
+      const raw = await response.json();
+      return raw;
+    },
+
     /* Getters */
 
-    async getData(n = 5, type, list, page) {
+    async getDataList(n = 5, type, data) {
       try {
-        const Movies = await this.getMovies(type, list, page);
+        const Movies = data;
         const ids = Movies.results.slice(0, n).map((movie) => movie.id);
 
         if (n === 1) {
           const id = ids[0];
-          return this.getMovie(type, id);
+          return this.getId(type, id);
         } else {
           const movies = [];
-
           for (let id of ids) {
-            const movie = await this.getMovie(type, id);
+            const movie = await this.getId(type, id);
             movies.push(movie);
           }
           return movies;
