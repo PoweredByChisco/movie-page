@@ -22,12 +22,12 @@ class Section extends React.Component {
     });
 
     try {
-      const type = this.props.type
-      const list = this.props.list
-      const page = this.props.page
+      const type = this.props.type;
+      const list = this.props.list;
+      const page = this.props.page;
 
       const dataIds = await apiData.imdb.getList(type, list, page);
-      const data = await apiData.imdb.getDataList(15, "movie", dataIds)
+      const data = await apiData.imdb.getDataList(15, "movie", dataIds);
       this.setState({ loading: false, data: data });
     } catch (error) {
       this.setState({ loading: false, error: error });
