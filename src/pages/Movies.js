@@ -51,7 +51,7 @@ class Movies extends React.Component {
 
     return (
       <React.Fragment>
-        <FrontMovie data={this.state.data[0]} />
+        <FrontMovie data={this.state.data[0].results[0]} />
         <GenresContainer />
         <SectionsContainer
           type={type}
