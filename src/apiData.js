@@ -20,6 +20,13 @@ const apiData = {
       return rawData;
     },
 
+    async getList2(type, list, page) {
+      const url = `https://api.themoviedb.org/3/${type}/${list}?api_key=${apiKey}&language=es-MX&page=${page}&region=US`;
+      const response = await fetch(url);
+      const rawData = await response.json();
+      return rawData.results;
+    },
+
     async getDataDiscover(
       type,
       language = "es-MX",
