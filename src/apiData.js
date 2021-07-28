@@ -24,10 +24,10 @@ const apiData = {
       const url = `https://api.themoviedb.org/3/${type}/${list}?api_key=${apiKey}&language=es-MX&page=${page}&region=US`;
       const response = await fetch(url);
       const rawData = await response.json();
-      return rawData.results;
+      return rawData;
     },
 
-    async getDataDiscover(
+    async getDataDiscover({
       type,
       language = "es-MX",
       sort = "popularity.desc",
@@ -36,8 +36,8 @@ const apiData = {
       people,
       companies,
       genres,
-      providers
-    ) {
+      providers,
+    }) {
       const url = `https://api.themoviedb.org/3/discover/${type}/?api_key=${apiKey}&language=${language}&sort_by=${sort}&include_adult=true&include_video=true&page=${page}&with_cast=${cast}&with_people=${people}&with_companies=${companies}&with_genres=${genres}&with_watch_providers=${providers}`;
       const response = await fetch(url);
       const raw = await response.json();

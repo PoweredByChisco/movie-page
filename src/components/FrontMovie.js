@@ -6,40 +6,29 @@ import { Link } from "react-router-dom";
 
 class FrontMovie extends React.Component {
   state = {
-    loading: true,
-    error: null,
-    data: undefined,
+    data: this.props.data,
   };
 
-  componentDidMount() {
+/*   componentWillMount() {
     this.fetchData();
   }
 
-  fetchData = async () => {
-    this.setState({
-      loading: true,
-      error: null,
-    });
+  fetchData() {
+    console.log(this.props.data)
+    const data = apiData.imdb.getDataList(1, "movie", this.props.data);
+    console.log(data)
 
-    try {
-      const type = this.props.type
-
-      const dataIds = await apiData.imdb.getList(type, "popular");
-      const data = await apiData.imdb.getDataList(1, "movie", dataIds)
-      this.setState({ loading: false, data: data });
-    } catch (error) {
-      this.setState({ loading: false, error: error });
-    }
-  };
-
+    this.setState({data: data });
+  }
+ */
   render() {
-    if (this.state.loading === true && !this.state.data) {
+    /*     if (this.state.loading === true && !this.state.data) {
       return <PageLoading />;
     }
 
     if (this.state.error) {
       return "error";
-    }
+    } */
 
     const url = "https://image.tmdb.org/t/p/original";
     const data = this.state.data;
@@ -54,7 +43,9 @@ class FrontMovie extends React.Component {
             </div>
             <div className="frontMovie__buttons">
               <button className="btn btn-primary">
-                <a href={data.homepage}><p>+ Info</p></a>
+                <a href={data.homepage}>
+                  <p>+ Info</p>
+                </a>
               </button>
               <button className="btn btn-secondary">
                 <p>Watch List</p>

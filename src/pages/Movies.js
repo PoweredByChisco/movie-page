@@ -24,12 +24,14 @@ class Movies extends React.Component {
     });
 
     try {
-
-      const dataIds = []
-      dataIds.push(await apiData.imdb.getList2("movie", "popular", 1));
-      dataIds.push(await apiData.imdb.getList2("movie", "upcoming", 1));
-
-      this.setState({ loading: false, data: dataIds });
+      const data = [];
+      data.push(
+        await apiData.imdb.getList2("movie", "popular", 1),
+        await apiData.imdb.getList2("movie", "now_playing", 1),
+        await apiData.imdb.getList2("movie", "upcoming", 1),
+        await apiData.imdb.getDataDiscover({type : "movie"})
+      );
+      this.setState({ loading: false, data: data });
     } catch (error) {
       this.setState({ loading: false, error: error });
     }
@@ -38,20 +40,25 @@ class Movies extends React.Component {
   render() {
     const url = "https://image.tmdb.org/t/p/w500/";
     const movies = this.state.data;
-    if (this.state.loading === true && !this.state.data) {
+    if (this.state.loading === true) {
       return <PageLoading />;
     }
 
     if (this.state.error) {
       return "Error";
     }
-    const type = "movie"
+    const type = "movie";
 
     return (
       <React.Fragment>
-        <FrontMovie type={type} />
+        <FrontMovie data={this.state.data[0]} />
         <GenresContainer />
-        <SectionsContainer type={type} section1="now_playing" section2="popular" section3="upcoming" />
+        <SectionsContainer
+          type={type}
+          section1="now_playing"
+          section2="popular"
+          section3="upcoming"
+        />
       </React.Fragment>
     );
   }
