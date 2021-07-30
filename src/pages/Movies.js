@@ -12,17 +12,25 @@ function Movies() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const array = [];
-        array.push(
-          await apiData.imdb.getDataListMax(10, "movie", "popular", 1),
-          await apiData.imdb.getDataListMax(10, "movie", "now_playing", 1),
-          await apiData.imdb.getDataListMax(10, "movie", "upcoming", 1)
-          /* await apiData.imdb.getDataDiscover({ type: "movie" }) */
+        const popular = await apiData.imdb.getDataListMax(
+          10,
+          "movie",
+          "popular",
+          1
         );
-        const ids = []
-        /* const data = array.map(item => ids.push(item.results.map((item) => (item.id)))) */
-
-        return setData(array);
+        const nowPlaying = await apiData.imdb.getDataListMax(
+          10,
+          "movie",
+          "now_playing",
+          1
+        );
+        const upcoming = await apiData.imdb.getDataListMax(
+          10,
+          "movie",
+          "upcoming",
+          1
+        );
+        return setData({ popular, nowPlaying, upcoming });
       } catch (error) {
         console.log(error);
       }
@@ -30,8 +38,6 @@ function Movies() {
     fetchData();
   }, []);
 
-  const x = Object.keys(data);
-  console.log(x);
   return (
     <React.Fragment>
       {/* <FrontMovie data={data[0].results[0]} /> */}
