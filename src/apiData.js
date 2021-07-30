@@ -5,9 +5,15 @@ const imageUrl = "https://image.tmdb.org/t/p/w500/";
 
 const apiData = {
   imdb: {
-    /* Setters */
-    async getId(type, id) {
+    async getDetails(type, id) {
       const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}&language=es-MX`;
+      const response = await fetch(url);
+      const rawData = await response.json();
+      return rawData;
+    },
+
+    async getMovieDetails(id) {
+      const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=es-MX`;
       const response = await fetch(url);
       const rawData = await response.json();
       return rawData;
@@ -44,26 +50,36 @@ const apiData = {
       return raw;
     },
 
-    /* Getters */
-
-    async getDataList(n = 5, type, data) {
+    async getDataByList(type, array) {
+      const ids = array.results.map((movie) => movie.id);
+      const movies = [];
       try {
-        const Movies = data;
-        const ids = Movies.results.slice(0, n).map((movie) => movie.id);
-
-        if (n === 1) {
-          const id = ids[0];
-          return this.getId(type, id);
-        } else {
-          const movies = [];
-          for (let id of ids) {
-            const movie = await this.getId(type, id);
-            movies.push(movie);
-          }
+        for (let id of ids) {
+          const movie = await this.getId(type, id);
+          movies.push(movie);
           return movies;
         }
       } catch (error) {
         console.log(error.message);
+      }
+    },  
+
+    async getDataListMax(n = 5, type, list, page) {
+      try {
+        const Movies = await this.getList(type, list, page);
+        console.log(Movies.results)
+        const ids = Movies.results.slice(0, n).map((movie) => movie.id);
+        console.log(ids)
+        const movies = [];
+        console.log(movies)
+
+        for (let id of ids) {
+          const movie = await this.getDetails(type, id);
+          movies.push(movie);
+        }
+        return movies;
+      } catch (error) {
+        console.log(error.message)
       }
     },
 
@@ -76,51 +92,6 @@ const apiData = {
       const image = imageUrl + imageGenreUrl;
       return image;
     },
-
-    /* async getPopularMovies() {
-      const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
-      const response = await fetch(url);
-      const rawData = await response.json();
-      return rawData.results;
-    },
-
-    async getNPopularMoviesIds(n = 5) {
-      try {
-        const popularMovies = await this.getPopularMovies();
-        const ids = popularMovies.slice(0, n).map((movie) => movie.id);
-        return ids;
-      } catch (error) {}
-    },
-
-    async getUpcomingMovies() {
-      const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`;
-      const response = await fetch(url);
-      const rawData = await response.json();
-      return rawData.results;
-    },
-
-    async getNUpcomingMoviesIds(n = 5) {
-      try {
-        const upcomingMovies = await this.getUpcomingMovies();
-        const ids = upcomingMovies.slice(0, n).map((movie) => movie.id);
-        return ids;
-      } catch (error) {}
-    },
-
-    async getNowPlayingMovies() {
-      const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`;
-      const response = await fetch(url);
-      const rawData = await response.json();
-      return rawData.results;
-    },
-
-    async getNNowPlayingMoviesIds(n = 5) {
-      try {
-        const upcomingMovies = await this.getUpcomingMovies();
-        const ids = upcomingMovies.slice(0, n).map((movie) => movie.id);
-        return ids;
-      } catch (error) {}
-    }, */
   },
 };
 

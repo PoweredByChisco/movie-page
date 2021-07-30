@@ -7,20 +7,22 @@ import apiData from "../apiData";
 import PageLoading from "../components/PageLoading";
 
 function Movies() {
-  const [data, setData] = useState({
-  });
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = [];
-        data.push(
-          await apiData.imdb.getList2("movie", "popular", 1),
-          await apiData.imdb.getList2("movie", "now_playing", 1),
-          await apiData.imdb.getList2("movie", "upcoming", 1),
-          await apiData.imdb.getDataDiscover({ type: "movie" })
+        const array = [];
+        array.push(
+          await apiData.imdb.getDataListMax(10, "movie", "popular", 1),
+          await apiData.imdb.getDataListMax(10, "movie", "now_playing", 1),
+          await apiData.imdb.getDataListMax(10, "movie", "upcoming", 1)
+          /* await apiData.imdb.getDataDiscover({ type: "movie" }) */
         );
-        return setData(data);
+        const ids = []
+        /* const data = array.map(item => ids.push(item.results.map((item) => (item.id)))) */
+
+        return setData(array);
       } catch (error) {
         console.log(error);
       }
@@ -33,12 +35,8 @@ function Movies() {
   return (
     <React.Fragment>
       {/* <FrontMovie data={data[0].results[0]} /> */}
-      {/* <GenresContainer />
-      <SectionsContainer
-        section1="now_playing"
-        section2="popular"
-        section3="upcoming"
-      />} */}
+      <GenresContainer />
+      <SectionsContainer title="In theathers now"></SectionsContainer>
     </React.Fragment>
   );
 }
