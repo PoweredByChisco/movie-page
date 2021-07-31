@@ -40,7 +40,7 @@ function Movies() {
 
   return (
     <React.Fragment>
-      {/* <FrontMovie data={data[0].results[0]} /> */}
+      <FrontMovie data={data.popular[0]} />
       <GenresContainer />
       <SectionsContainer title="In theathers now"></SectionsContainer>
     </React.Fragment>
