@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles/SectionsContainer.css";
-import Section from "./Section";
 
 function SectionsContainer({ children, title }) {
   return (

@@ -4,7 +4,8 @@ import FrontMovie from "../components/FrontMovie";
 import GenresContainer from "../components/GenresContainer";
 import SectionsContainer from "../components/SectionsContainer";
 import apiData from "../apiData";
-import PageLoading from "../components/PageLoading";
+import Section from "../components/Section"
+import Movie from "../components/Movie";
 
 function Movies() {
   const [data, setData] = useState([]);
@@ -38,11 +39,19 @@ function Movies() {
     fetchData();
   }, []);
 
-  return (
+  console.log(data)
+
+  return data.length === 0 ? (
+    <h1>Loading ...</h1>
+  ) : (
     <React.Fragment>
-      <FrontMovie data={data.popular[0]} />
+      <FrontMovie {...data.popular[0]} />
       <GenresContainer />
-      <SectionsContainer title="In theathers now"></SectionsContainer>
+      <SectionsContainer title="In theathers now">
+        <Section>
+          {data.nowPlaying.map((item) => (<Movie key={item.id} {...item} />))}
+        </Section>
+      </SectionsContainer>
     </React.Fragment>
   );
 }

@@ -67,11 +67,11 @@ const apiData = {
     async getDataListMax(n = 5, type, list, page) {
       try {
         const Movies = await this.getList(type, list, page);
-        console.log(Movies.results)
+
         const ids = Movies.results.slice(0, n).map((movie) => movie.id);
-        console.log(ids)
+
         const movies = [];
-        console.log(movies)
+
 
         for (let id of ids) {
           const movie = await this.getDetails(type, id);

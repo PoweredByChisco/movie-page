@@ -1,57 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles/Movie.css";
 import Modal from "./Modal";
 import ModalMovie from "./ModalMovie";
 import { CSSTransition } from "react-transition-group";
 
-class Movie extends React.Component {
-  state = {
-    data: this.props,
-    modalIsOpen: false,
+const Movie = ({ poster_path, title, runtime, overview, backdrop_path, homepage }) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const url = "https://image.tmdb.org/t/p/w500/";
+
+  const handleOpenModal = () => {
+    setModalIsOpen(true); /* Ojo al selectedData */
   };
 
-  handleOpenModal = (e) => {
-    this.setState({ modalIsOpen: true, selectedData: this.props }); /* Ojo al selectedData */
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
   };
 
-  handleCloseModal = (e) => {
-    this.setState({ modalIsOpen: false });
-  };
-
-  render() {
-    return (
-      <React.Fragment>
-        <div className="movie-container" onClick={this.handleOpenModal}>
-          <img src={this.props.img} alt="" />
-          <div className="info-container">
-            <h1>{this.props.title}</h1>
-            <h3>{this.props.duration} min</h3>
-          </div>
+  return (
+    <React.Fragment>
+      <div className="movie-container" onClick={handleOpenModal}>
+        <img src={url + poster_path} alt="" />
+        <div className="info-container">
+          <h1>{title}</h1>
+          <h3>{runtime} min</h3>
         </div>
-        <CSSTransition
-          timeout={300}
-          in={this.state.modalIsOpen}
-          classNames="show"
-          unmountOnExit
-          onEnter={() => console.log("On enter")}
-          onExiting={() => console.log("Se ejecuto on Exited")}
-        >
-          <Modal
-            isOpen={this.state.modalIsOpen}
-            onClose={this.handleCloseModal}
-          >
-            <ModalMovie
-              src={this.state.data.img}
-              title={this.state.data.title}
-              overview={this.state.data.overview}
-              backdrop={this.state.data.backdrop}
-              homepage={this.state.data.homepage}
-            />
-          </Modal>
-        </CSSTransition>
-      </React.Fragment>
-    );
-  }
-}
+      </div>
+      <CSSTransition
+        timeout={300}
+        in={modalIsOpen}
+        classNames="show"
+        unmountOnExit
+        onEnter={() => console.log("On enter")}
+        onExiting={() => console.log("Se ejecuto on Exited")}
+      >
+        <Modal isOpen={modalIsOpen} onClose={handleCloseModal}>
+          <ModalMovie
+            src={url + poster_path}
+            title={title}
+            overview={overview}
+            backdrop={backdrop_path}
+            homepage={homepage}
+          />
+        </Modal>
+      </CSSTransition>
+    </React.Fragment>
+  );
+};
 
 export default Movie;
