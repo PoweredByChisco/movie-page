@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./styles/Movies.css";
 import FrontMovie from "../components/FrontMovie";
 import GenresContainer from "../components/GenresContainer";
@@ -7,9 +7,8 @@ import useInitialStateMovie from "../hooks/useInitialStateMovie";
 import Section from "../components/Section";
 import Movie from "../components/Movie";
 
-
 function Movies() {
-  const initialState = useInitialStateMovie()
+  const initialState = useInitialStateMovie();
 
   return initialState.length === 0 ? (
     <h1>Loading ...</h1>
