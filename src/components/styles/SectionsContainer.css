@@ -1,0 +1,12 @@
+h1 {
+  margin: 25px 0 10px;
+  font-size: 1rem;
+}
+
+/* Desktop */
+
+@media (min-width: 920px) {
+  h1 {
+    font-size: 2rem;
+  }
+}

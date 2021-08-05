@@ -4,7 +4,7 @@ import FrontMovie from "../components/FrontMovie";
 import GenresContainer from "../components/GenresContainer";
 import SectionsContainer from "../components/SectionsContainer";
 import apiData from "../apiData";
-import Section from "../components/Section"
+import Section from "../components/Section";
 import Movie from "../components/Movie";
 
 function Movies() {
@@ -13,19 +13,19 @@ function Movies() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const popular = await apiData.imdb.getDataListMax(
+        const popular = await apiData.imdb.getDataList(
           10,
           "movie",
           "popular",
           1
         );
-        const nowPlaying = await apiData.imdb.getDataListMax(
+        const nowPlaying = await apiData.imdb.getDataList(
           10,
           "movie",
           "now_playing",
           1
         );
-        const upcoming = await apiData.imdb.getDataListMax(
+        const upcoming = await apiData.imdb.getDataList(
           10,
           "movie",
           "upcoming",
@@ -39,7 +39,7 @@ function Movies() {
     fetchData();
   }, []);
 
-  console.log(data)
+  console.log(data);
 
   return data.length === 0 ? (
     <h1>Loading ...</h1>
@@ -49,7 +49,25 @@ function Movies() {
       <GenresContainer />
       <SectionsContainer title="In theathers now">
         <Section>
-          {data.nowPlaying.map((item) => (<Movie key={item.id} {...item} />))}
+          {data.nowPlaying.map((item) => (
+            <Movie key={item.id} {...item} />
+          ))}
+        </Section>
+      </SectionsContainer>
+
+      <SectionsContainer title="Popular">
+        <Section>
+          {data.popular.map((item) => (
+            <Movie key={item.id} {...item} />
+          ))}
+        </Section>
+      </SectionsContainer>
+
+      <SectionsContainer title="Upcoming">
+        <Section>
+          {data.upcoming.map((item) => (
+            <Movie key={item.id} {...item} />
+          ))}
         </Section>
       </SectionsContainer>
     </React.Fragment>

@@ -1,8 +1,3 @@
-h1 {
-  margin: 25px 0 10px;
-  font-size: 1rem;
-}
-
 .section {
   margin-left: 25px;
   display: flex;
@@ -13,10 +8,7 @@ h1 {
 /* Desktop */
 
 @media (min-width: 920px) {
-  h1 {
-    font-size: 2rem;
-}
-  .section{
+  .section {
     overflow-x: scroll;
     overflow-y: visible;
   }

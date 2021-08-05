@@ -4,9 +4,17 @@ import Modal from "./Modal";
 import ModalMovie from "./ModalMovie";
 import { CSSTransition } from "react-transition-group";
 
-const Movie = ({ poster_path, title, runtime, overview, backdrop_path, homepage }) => {
+const Movie = ({
+  poster_path,
+  title,
+  runtime,
+  overview,
+  backdrop_path,
+  homepage,
+}) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const url = "https://image.tmdb.org/t/p/w500/";
+  const imgUrl = "https://image.tmdb.org/t/p/w500/";
+  const imgUrlOriginal = "https://image.tmdb.org/t/p/original/";
 
   const handleOpenModal = () => {
     setModalIsOpen(true); /* Ojo al selectedData */
@@ -19,7 +27,7 @@ const Movie = ({ poster_path, title, runtime, overview, backdrop_path, homepage 
   return (
     <React.Fragment>
       <div className="movie-container" onClick={handleOpenModal}>
-        <img src={url + poster_path} alt="" />
+        <img src={imgUrl + poster_path} alt="" />
         <div className="info-container">
           <h1>{title}</h1>
           <h3>{runtime} min</h3>
@@ -35,10 +43,10 @@ const Movie = ({ poster_path, title, runtime, overview, backdrop_path, homepage 
       >
         <Modal isOpen={modalIsOpen} onClose={handleCloseModal}>
           <ModalMovie
-            src={url + poster_path}
+            src={imgUrl + poster_path}
             title={title}
             overview={overview}
-            backdrop={backdrop_path}
+            backdrop={imgUrlOriginal + backdrop_path}
             homepage={homepage}
           />
         </Modal>

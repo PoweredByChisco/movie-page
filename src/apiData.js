@@ -1,33 +1,28 @@
 const apiKey = "b89fc45c2067cbd33560270639722eae";
 const imageUrl = "https://image.tmdb.org/t/p/w500/";
+const language = "en-US"
+const region = "US"
 
 /* GetAPI */
 
 const apiData = {
   imdb: {
     async getDetails(type, id) {
-      const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}&language=es-MX`;
+      const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}&language=${language}`;
       const response = await fetch(url);
       const rawData = await response.json();
       return rawData;
     },
 
     async getMovieDetails(id) {
-      const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=es-MX`;
+      const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=${language}`;
       const response = await fetch(url);
       const rawData = await response.json();
       return rawData;
     },
 
     async getList(type, list, page) {
-      const url = `https://api.themoviedb.org/3/${type}/${list}?api_key=${apiKey}&language=es-MX&page=${page}&region=US`;
-      const response = await fetch(url);
-      const rawData = await response.json();
-      return rawData;
-    },
-
-    async getList2(type, list, page) {
-      const url = `https://api.themoviedb.org/3/${type}/${list}?api_key=${apiKey}&language=es-MX&page=${page}&region=US`;
+      const url = `https://api.themoviedb.org/3/${type}/${list}?api_key=${apiKey}&language=${language}&page=${page}&region=${region}`;
       const response = await fetch(url);
       const rawData = await response.json();
       return rawData;
@@ -50,36 +45,18 @@ const apiData = {
       return raw;
     },
 
-    async getDataByList(type, array) {
-      const ids = array.results.map((movie) => movie.id);
-      const movies = [];
-      try {
-        for (let id of ids) {
-          const movie = await this.getId(type, id);
-          movies.push(movie);
-          return movies;
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    },  
-
-    async getDataListMax(n = 5, type, list, page) {
+    async getDataList(n = 5, type, list, page) {
       try {
         const Movies = await this.getList(type, list, page);
-
         const ids = Movies.results.slice(0, n).map((movie) => movie.id);
-
         const movies = [];
-
-
         for (let id of ids) {
           const movie = await this.getDetails(type, id);
           movies.push(movie);
         }
         return movies;
       } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
       }
     },
 
