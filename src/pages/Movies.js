@@ -3,53 +3,23 @@ import "./styles/Movies.css";
 import FrontMovie from "../components/FrontMovie";
 import GenresContainer from "../components/GenresContainer";
 import SectionsContainer from "../components/SectionsContainer";
-import apiData from "../apiData";
+import useInitialStateMovie from "../hooks/useInitialStateMovie";
 import Section from "../components/Section";
 import Movie from "../components/Movie";
 
+
 function Movies() {
-  const [data, setData] = useState([]);
+  const initialState = useInitialStateMovie()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const popular = await apiData.imdb.getDataList(
-          10,
-          "movie",
-          "popular",
-          1
-        );
-        const nowPlaying = await apiData.imdb.getDataList(
-          10,
-          "movie",
-          "now_playing",
-          1
-        );
-        const upcoming = await apiData.imdb.getDataList(
-          10,
-          "movie",
-          "upcoming",
-          1
-        );
-        return setData({ popular, nowPlaying, upcoming });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  console.log(data);
-
-  return data.length === 0 ? (
+  return initialState.length === 0 ? (
     <h1>Loading ...</h1>
   ) : (
     <React.Fragment>
-      <FrontMovie {...data.popular[0]} />
+      <FrontMovie {...initialState.popular[0]} />
       <GenresContainer />
       <SectionsContainer title="In theathers now">
         <Section>
-          {data.nowPlaying.map((item) => (
+          {initialState.nowPlaying.map((item) => (
             <Movie key={item.id} {...item} />
           ))}
         </Section>
@@ -57,7 +27,7 @@ function Movies() {
 
       <SectionsContainer title="Popular">
         <Section>
-          {data.popular.map((item) => (
+          {initialState.popular.map((item) => (
             <Movie key={item.id} {...item} />
           ))}
         </Section>
@@ -65,7 +35,7 @@ function Movies() {
 
       <SectionsContainer title="Upcoming">
         <Section>
-          {data.upcoming.map((item) => (
+          {initialState.upcoming.map((item) => (
             <Movie key={item.id} {...item} />
           ))}
         </Section>
