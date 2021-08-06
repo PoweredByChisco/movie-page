@@ -14,13 +14,6 @@ const apiData = {
       return rawData;
     },
 
-    async getMovieDetails(id) {
-      const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=${language}`;
-      const response = await fetch(url);
-      const rawData = await response.json();
-      return rawData;
-    },
-
     async getList(type, list, page) {
       const url = `https://api.themoviedb.org/3/${type}/${list}?api_key=${apiKey}&language=${language}&page=${page}&region=${region}`;
       const response = await fetch(url);
