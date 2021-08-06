@@ -8,7 +8,7 @@ function Navbar() {
       <Link to="">
         <p>Movies</p>
       </Link>
-      <Link to="">
+      <Link to="/tv">
         <p>Series</p>
       </Link>
     </div>
