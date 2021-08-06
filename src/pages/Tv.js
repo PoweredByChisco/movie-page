@@ -1,27 +1,46 @@
 import React from "react";
-import "./styles/Movies.css";
-import FrontMovie from "../components/FrontMovie";
+import FrontSerie from "../components/FrontSerie";
 import GenresContainer from "../components/GenresContainer";
 import SectionsContainer from "../components/SectionsContainer";
+import Section from "../components/Section";
+import useInitialStateTv from "../hooks/useInitalStateTv";
+import Serie from "../components/Serie";
+import "./styles/Movies.css";
 
-class Tv extends React.Component {
-  state = {
-    loading: true,
-    error: null,
-    data: undefined,
-  };
+function Tv() {
+  const initialState = useInitialStateTv();
 
-  render() {
-    const type = "tv"
+  return initialState.length === 0 ? (
+    <h1>Loading</h1>
+  ) : (
+    <React.Fragment>
+      <FrontSerie {...initialState.popular[0]} />
 
-    return (
-      <React.Fragment>
-        <FrontMovie type={type} />
-      {/*   <GenresContainer /> */}
-        <SectionsContainer type={type} section1="on_the_air" section2="popular" section3="airing_today" />
-      </React.Fragment>
-    );
-  }
+      <SectionsContainer title="Popular">
+        <Section>
+          {initialState.popular.map((item) => (
+            <Serie key={item.id} {...item} />
+          ))}
+        </Section>
+      </SectionsContainer>
+      
+      <SectionsContainer title="Airign Today">
+        <Section>
+          {initialState.airingToday.map((item) => (
+            <Serie key={item.id} {...item} />
+          ))}
+        </Section>
+      </SectionsContainer> 
+
+      <SectionsContainer title="On the Air">
+        <Section>
+          {initialState.onTheAir.map((item) => (
+            <Serie key={item.id} {...item} />
+          ))}
+        </Section>
+      </SectionsContainer>
+    </React.Fragment>
+  );
 }
 
 export default Tv;

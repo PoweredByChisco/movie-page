@@ -4,10 +4,10 @@ import Modal from "./Modal";
 import ModalMovie from "./ModalMovie";
 import { CSSTransition } from "react-transition-group";
 
-const Movie = ({
+const Serie = ({
   poster_path,
-  title,
-  runtime,
+  name,
+  episode_run_time,
   overview,
   backdrop_path,
   homepage,
@@ -29,8 +29,8 @@ const Movie = ({
       <div className="movie-container" onClick={handleOpenModal}>
         <img src={imgUrl + poster_path} alt="" />
         <div className="info-container">
-          <h1>{title}</h1>
-          <h3>{runtime} min</h3>
+          <h1>{name}</h1>
+          <h3>{episode_run_time} min</h3>
         </div>
       </div>
       <CSSTransition
@@ -44,7 +44,7 @@ const Movie = ({
         <Modal isOpen={modalIsOpen} onClose={handleCloseModal}>
           <ModalMovie
             src={imgUrl + poster_path}
-            title={title}
+            title={name}
             overview={overview}
             backdrop={imgUrlOriginal + backdrop_path}
             homepage={homepage}
@@ -55,4 +55,4 @@ const Movie = ({
   );
 };
 
-export default Movie;
+export default Serie;

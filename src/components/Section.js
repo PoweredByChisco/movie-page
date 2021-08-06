@@ -1,71 +1,15 @@
 import React from "react";
 import "./styles/Sections.css";
-import PageLoading from "./PageLoading";
-import apiData from "../apiData";
 import Movie from "./Movie";
 
-class Section extends React.Component {
-  state = {
-    loading: true,
-    error: null,
-    data: undefined,
-  };
+function Section({children}) {
 
-  componentDidMount() {
-    this.fetchData();
-  }
 
-  fetchData = async () => {
-    this.setState({
-      loading: true,
-      error: null,
-    });
-
-    try {
-      const type = this.props.type;
-      const list = this.props.list;
-      const page = this.props.page;
-
-      const dataIds = await apiData.imdb.getList(type, list, page);
-      const data = await apiData.imdb.getDataList(15, "movie", dataIds);
-      this.setState({ loading: false, data: data });
-    } catch (error) {
-      this.setState({ loading: false, error: error });
-    }
-  };
-
-  render() {
-    const url = "https://image.tmdb.org/t/p/w500/";
-    const movies = this.state.data;
-    if (this.state.loading === true && !this.state.data) {
-      return <PageLoading />;
-    }
-
-    if (this.state.error) {
-      return "Error";
-    }
-
-    return (
-      <React.Fragment>
-        <h1>{this.props.title}</h1>
-        <div className="section">
-          {movies.map((movie) => {
-            return (
-              <Movie
-                key={movie.id}
-                title={movie.title}
-                duration={movie.runtime}
-                img={url + movie.poster_path}
-                backdrop={url + movie.backdrop_path}
-                overview={movie.overview}
-                homepage={movie.homepage}
-              />
-            );
-          })}
-        </div>
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      <div className="section">{children}</div>
+    </React.Fragment>
+  );
 }
 
 export default Section;

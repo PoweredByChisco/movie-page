@@ -4,7 +4,7 @@ import apiData from "../apiData";
 import PageLoading from "../components/PageLoading";
 import { Link } from "react-router-dom";
 
-const FrontMovie = ({ title, backdrop_path, overview, homepage }) => {
+const FrontSerie = ({ name, backdrop_path, overview, homepage }) => {
   const url = "https://image.tmdb.org/t/p/original";
 
   return (
@@ -14,7 +14,7 @@ const FrontMovie = ({ title, backdrop_path, overview, homepage }) => {
           <div className="frontMovie__post">
             <img src={url + backdrop_path} alt="" />
             <div className="info">
-              <h1>{title}</h1>
+              <h1>{name}</h1>
               <p className="description">{overview}</p>
             </div>
             <div className="frontMovie__buttons">
@@ -34,4 +34,4 @@ const FrontMovie = ({ title, backdrop_path, overview, homepage }) => {
   );
 };
 
-export default FrontMovie;
+export default FrontSerie;
