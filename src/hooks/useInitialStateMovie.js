@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import apiData from "../apiData";
 
+/* Estoy haciendo doble uso de estado para manejar un estado de carga mas rapida, aun asi debo de mejorar esto */
 function useInitialStateMovie() {
   const [data, setData] = useState([]);
+  const [section, setSection] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,6 +25,22 @@ function useInitialStateMovie() {
           "movie",
           apiData.imdb.getList("movie", "upcoming", 1)
         );
+
+        return setData({
+          popular,
+          nowPlaying,
+          upcoming,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+    console.log("Se ejecuto initialState")
+  }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
         //Fetching by genres
         const horror = await apiData.imdb.getDataArray(
           10,
@@ -49,12 +67,8 @@ function useInitialStateMovie() {
           "movie",
           apiData.imdb.genres.getList("movie", "popularity.desc", 1, 14)
         );
-        console.log(animation);
 
-        return setData({
-          popular,
-          nowPlaying,
-          upcoming,
+        return setSection({
           horror,
           action,
           adventure,
@@ -66,9 +80,9 @@ function useInitialStateMovie() {
       }
     };
     fetchData();
+    console.log("Se ejecuto section")
   }, []);
-  console.table(data);
-  return data;
+  return {data, section};
 }
 
 export default useInitialStateMovie;
