@@ -1,7 +1,7 @@
 const apiKey = "b89fc45c2067cbd33560270639722eae";
 const imageUrl = "https://image.tmdb.org/t/p/w500/";
-const language = "en-US"
-const region = "US"
+const language = "en-US";
+const region = "US";
 
 /* GetAPI */
 
@@ -21,26 +21,18 @@ const apiData = {
       return rawData;
     },
 
-    async getDataDiscover({
-      type,
-      language = "es-MX",
-      sort = "popularity.desc",
-      page = 1,
-      cast,
-      people,
-      companies,
-      genres,
-      providers,
-    }) {
-      const url = `https://api.themoviedb.org/3/discover/${type}/?api_key=${apiKey}&language=${language}&sort_by=${sort}&include_adult=true&include_video=true&page=${page}&with_cast=${cast}&with_people=${people}&with_companies=${companies}&with_genres=${genres}&with_watch_providers=${providers}`;
-      const response = await fetch(url);
-      const raw = await response.json();
-      return raw;
+    genres: {
+      async getList(type, sort = "popularity.desc", page = 1, genres) {
+        const url = `https://api.themoviedb.org/3/discover/${type}/?api_key=${apiKey}&language=${language}&sort_by=${sort}&include_adult=true&include_video=false&page=${page}&with_genres=${genres}`;
+        const response = await fetch(url);
+        const raw = await response.json();
+        return raw;
+      },
     },
 
-    async getDataList(n = 5, type, list, page) {
+    async getDataArray(n = 5, type, callback) {
       try {
-        const Movies = await this.getList(type, list, page);
+        const Movies = await callback;
         const ids = Movies.results.slice(0, n).map((movie) => movie.id);
         const movies = [];
         for (let id of ids) {

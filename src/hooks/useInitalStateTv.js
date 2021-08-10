@@ -7,15 +7,53 @@ const useInitialStateTv = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const airingToday = await apiData.imdb.getDataList(15, "tv", "airing_today", 1);
-        const popular = await apiData.imdb.getDataList(15, "tv", "popular", 1);
-        const onTheAir = await apiData.imdb.getDataList(
+        //Fetching by playList
+        const airingToday = await apiData.imdb.getDataArray(
           15,
           "tv",
-          "on_the_air",
-          1
+          apiData.imdb.getList("tv", "airing_today", 1)
         );
-        return setData({ airingToday, popular, onTheAir });
+        const popular = await apiData.imdb.getDataArray(
+          15,
+          "tv",
+          apiData.imdb.getList("tv", "popular", 1)
+        );
+        //Fetching by genres
+        const actionAdventure = await apiData.imdb.getDataArray(
+          10,
+          "tv",
+          apiData.imdb.genres.getList("tv", "popularity.desc", 1, 10759)
+        );
+        const animation = await apiData.imdb.getDataArray(
+          10,
+          "tv",
+          apiData.imdb.genres.getList("tv", "popularity.desc", 1, 16)
+        );
+        const documentary = await apiData.imdb.getDataArray(
+          10,
+          "tv",
+          apiData.imdb.genres.getList("tv", "popularity.desc", 1, 99)
+        );
+        const scifi = await apiData.imdb.getDataArray(
+          10,
+          "tv",
+          apiData.imdb.genres.getList("tv", "popularity.desc", 1, 10765)
+        );
+        const comedy = await apiData.imdb.getDataArray(
+          10,
+          "tv",
+          apiData.imdb.genres.getList("tv", "popularity.desc", 1, 35)
+        );
+        console.log(popular);
+        return setData({
+          airingToday,
+          popular,
+          actionAdventure,
+          animation,
+          documentary,
+          scifi,
+          comedy,
+        });
       } catch (error) {
         console.log(error);
       }

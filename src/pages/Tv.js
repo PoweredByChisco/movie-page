@@ -1,6 +1,5 @@
 import React from "react";
 import FrontSerie from "../components/FrontSerie";
-import GenresContainer from "../components/GenresContainer";
 import SectionsContainer from "../components/SectionsContainer";
 import Section from "../components/Section";
 import useInitialStateTv from "../hooks/useInitalStateTv";
@@ -15,10 +14,26 @@ function Tv() {
   ) : (
     <React.Fragment>
       <FrontSerie {...initialState.popular[0]} />
-
+      {/* Sections */}
       <SectionsContainer title="Popular">
         <Section>
           {initialState.popular.map((item) => (
+            <Serie key={item.id} {...item} />
+          ))}
+        </Section>
+      </SectionsContainer>
+
+      <SectionsContainer title="Action-Adventures">
+        <Section>
+          {initialState.actionAdventure.map((item) => (
+            <Serie key={item.id} {...item} />
+          ))}
+        </Section>
+      </SectionsContainer>
+
+      <SectionsContainer title="Documentary">
+        <Section>
+          {initialState.documentary.map((item) => (
             <Serie key={item.id} {...item} />
           ))}
         </Section>
@@ -32,9 +47,25 @@ function Tv() {
         </Section>
       </SectionsContainer> 
 
-      <SectionsContainer title="On the Air">
+      <SectionsContainer title="Scifi">
         <Section>
-          {initialState.onTheAir.map((item) => (
+          {initialState.scifi.map((item) => (
+            <Serie key={item.id} {...item} />
+          ))}
+        </Section>
+      </SectionsContainer>
+
+      <SectionsContainer title="Comedy">
+        <Section>
+          {initialState.comedy.map((item) => (
+            <Serie key={item.id} {...item} />
+          ))}
+        </Section>
+      </SectionsContainer>
+
+      <SectionsContainer title="Animation">
+        <Section>
+          {initialState.animation.map((item) => (
             <Serie key={item.id} {...item} />
           ))}
         </Section>

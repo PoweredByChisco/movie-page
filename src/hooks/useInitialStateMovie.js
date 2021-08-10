@@ -7,32 +7,67 @@ function useInitialStateMovie() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const popular = await apiData.imdb.getDataList(
+        //Fetching by playlists
+        const popular = await apiData.imdb.getDataArray(
           10,
           "movie",
-          "popular",
-          1
+          apiData.imdb.getList("movie", "popular", 1)
         );
-        const nowPlaying = await apiData.imdb.getDataList(
+        const nowPlaying = await apiData.imdb.getDataArray(
           10,
           "movie",
-          "now_playing",
-          1
+          apiData.imdb.getList("movie", "now_playing", 1)
         );
-        const upcoming = await apiData.imdb.getDataList(
+        const upcoming = await apiData.imdb.getDataArray(
           10,
           "movie",
-          "upcoming",
-          1
+          apiData.imdb.getList("movie", "upcoming", 1)
         );
-        return setData({ popular, nowPlaying, upcoming });
+        //Fetching by genres
+        const horror = await apiData.imdb.getDataArray(
+          10,
+          "movie",
+          apiData.imdb.genres.getList("movie", "popularity.desc", 1, 27)
+        );
+        const action = await apiData.imdb.getDataArray(
+          10,
+          "movie",
+          apiData.imdb.genres.getList("movie", "popularity.desc", 1, 28)
+        );
+        const adventure = await apiData.imdb.getDataArray(
+          10,
+          "movie",
+          apiData.imdb.genres.getList("movie", "popularity.desc", 1, 12)
+        );
+        const animation = await apiData.imdb.getDataArray(
+          10,
+          "movie",
+          apiData.imdb.genres.getList("movie", "popularity.desc", 1, 16)
+        );
+        const fantasy = await apiData.imdb.getDataArray(
+          10,
+          "movie",
+          apiData.imdb.genres.getList("movie", "popularity.desc", 1, 14)
+        );
+        console.log(animation);
+
+        return setData({
+          popular,
+          nowPlaying,
+          upcoming,
+          horror,
+          action,
+          adventure,
+          animation,
+          fantasy,
+        });
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
   }, []);
-
+  console.table(data);
   return data;
 }
 
