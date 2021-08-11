@@ -1,8 +1,5 @@
 import React from "react";
 import "./styles/FrontMovie.css";
-import apiData from "../apiData";
-import PageLoading from "../components/PageLoading";
-import { Link } from "react-router-dom";
 
 const FrontMovie = ({ title, backdrop_path, overview, homepage }) => {
   const url = "https://image.tmdb.org/t/p/original";
