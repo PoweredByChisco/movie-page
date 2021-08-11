@@ -3,6 +3,7 @@ import apiData from "../apiData";
 
 const useInitialStateTv = () => {
   const [data, setData] = useState([]);
+  const [section, setSection] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,6 +19,20 @@ const useInitialStateTv = () => {
           "tv",
           apiData.imdb.getList("tv", "popular", 1)
         );
+        return setData({
+          airingToday,
+          popular,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
         //Fetching by genres
         const actionAdventure = await apiData.imdb.getDataArray(
           10,
@@ -44,10 +59,7 @@ const useInitialStateTv = () => {
           "tv",
           apiData.imdb.genres.getList("tv", "popularity.desc", 1, 35)
         );
-        console.log(popular);
-        return setData({
-          airingToday,
-          popular,
+        return setSection({
           actionAdventure,
           animation,
           documentary,
@@ -61,7 +73,7 @@ const useInitialStateTv = () => {
     fetchData();
   }, []);
 
-  return data;
+  return {data, section};
 };
 
 export default useInitialStateTv;

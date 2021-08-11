@@ -6,13 +6,11 @@ import SectionsContainer from "../components/SectionsContainer";
 import useInitialStateMovie from "../hooks/useInitialStateMovie";
 import Section from "../components/Section";
 import Movie from "../components/Movie";
-import apiData from "../apiData";
 
 function Movies() {
   const initialStateMovie = useInitialStateMovie();
   const initialState = initialStateMovie.data
   const section = initialStateMovie.section
-  console.log(initialState);
 
   return (
     <React.Fragment>
@@ -50,7 +48,7 @@ function Movies() {
       )}
 
       {section.length === 0 ? (
-        <h1>Loading Section...</h1>
+        <h1>Loading Genres...</h1>
       ) : (
         <>
           <SectionsContainer title="Horror">
