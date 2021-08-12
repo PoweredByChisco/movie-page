@@ -9,45 +9,44 @@ import Movie from "../components/Movie";
 
 function Movies() {
   const initialStateMovie = useInitialStateMovie();
-  const initialState = initialStateMovie.data
-  const section = initialStateMovie.section
+  const initialState = initialStateMovie.data;
+  const section = initialStateMovie.section;
+  console.log(initialStateMovie);
 
   return (
     <React.Fragment>
-      {initialState.length === 0 ? (
-        <h1>Loading ...</h1>
+      {initialStateMovie.length === 0 ? (
+        <h1>Loading...</h1>
       ) : (
-        <>
-          <FrontMovie {...initialState.popular[0]} />
-          <GenresContainer />
-          {/* Sections */}
-          <SectionsContainer title="In theathers now">
-            <Section>
-              {initialState.nowPlaying.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
-
-          <SectionsContainer title="Popular">
-            <Section>
-              {initialState.popular.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
-
-          <SectionsContainer title="Upcoming">
-            <Section>
-              {initialState.upcoming.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
-        </>
+        <FrontMovie {...initialStateMovie.popular[0]} />
       )}
+      {/* <GenresContainer /> */}
+      {/* Sections */}
+      {/* <SectionsContainer title="In theathers now">
+        <Section>
+          {initialState.nowPlaying.map((item) => (
+            <Movie key={item.id} {...item} />
+          ))}
+        </Section>
+      </SectionsContainer>
 
-      {section.length === 0 ? (
+      <SectionsContainer title="Popular">
+        <Section>
+          {initialState.popular.map((item) => (
+            <Movie key={item.id} {...item} />
+          ))}
+        </Section>
+      </SectionsContainer>
+
+      <SectionsContainer title="Upcoming">
+        <Section>
+          {initialState.upcoming.map((item) => (
+            <Movie key={item.id} {...item} />
+          ))}
+        </Section>
+      </SectionsContainer> */}
+
+      {/* {section.length === 0 ? (
         <h1>Loading Genres...</h1>
       ) : (
         <>
@@ -91,7 +90,7 @@ function Movies() {
             </Section>
           </SectionsContainer>
         </>
-      )}
+      )} */}
     </React.Fragment>
   );
 }
