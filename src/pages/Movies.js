@@ -14,7 +14,7 @@ function Movies() {
   return (
     <React.Fragment>
       {initialStateMovie.popular.length === 0 ? (
-        <FrontMovie title="Loading"/>
+        <FrontMovie title="Loading" />
       ) : (
         <FrontMovie {...initialStateMovie.popular[0]} />
       )}
@@ -56,51 +56,65 @@ function Movies() {
         </SectionsContainer>
       )}
 
-      {/* {section.length === 0 ? (
-        <h1>Loading Genres...</h1>
+      {initialStateMovie.horror.length === 0 ? (
+        <SectionsContainer title="Loading" />
       ) : (
-        <>
-          <SectionsContainer title="Horror">
-            <Section>
-              {section.horror.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
+        <SectionsContainer title="Horror">
+          <Section>
+            {initialStateMovie.horror.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-          <SectionsContainer title="Action">
-            <Section>
-              {section.action.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
+      {initialStateMovie.action.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Action">
+          <Section>
+            {initialStateMovie.action.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-          <SectionsContainer title="Animation">
-            <Section>
-              {section.animation.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
+      {initialStateMovie.animation.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Animation">
+          <Section>
+            {initialStateMovie.animation.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-          <SectionsContainer title="Fantasy">
-            <Section>
-              {section.fantasy.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
+      {initialStateMovie.fantasy.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Fantasy">
+          <Section>
+            {initialStateMovie.fantasy.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-          <SectionsContainer title="Adventure">
-            <Section>
-              {section.adventure.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
-        </>
-      )} */}
+      {initialStateMovie.adventure.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Adventure">
+          <Section>
+            {initialStateMovie.adventure.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
     </React.Fragment>
   );
 }
