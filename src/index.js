@@ -10,7 +10,8 @@ import "./global.css";
 
 
 const initialState = {
-  movies : {}
+  movies : {},
+  myList: {}
 }
 
 const composeEnhancers =
