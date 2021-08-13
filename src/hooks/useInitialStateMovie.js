@@ -3,13 +3,11 @@ import apiData from "../apiData";
 
 /* Estoy haciendo doble uso de estado para manejar un estado de carga mas rapida, aun asi debo de mejorar esto */
 function useInitialStateMovie() {
-  const [data, setData] = useState({
-    popular: {},
-    nowPlaying: {},
-    upcoming: {},
-  });
+  const [popular, setPopular] = useState([]);
+  const [nowPlaying, setNowPlaying] = useState([]);
+  const [upcoming, setUpcoming] = useState([]);
+
   const [section, setSection] = useState([]);
-  const array = []
 
   useEffect(() => {
     const fetchPopular = async () => {
@@ -19,11 +17,15 @@ function useInitialStateMovie() {
           "movie",
           apiData.imdb.getList("movie", "popular", 1)
         );
-        array.push(popular)
+        return setPopular(popular);
       } catch (error) {
         console.log(error);
       }
     };
+    fetchPopular();
+  }, []);
+
+  useEffect(() => {
     const fetchNowPlaying = async () => {
       try {
         const nowPlaying = await apiData.imdb.getDataArray(
@@ -31,11 +33,15 @@ function useInitialStateMovie() {
           "movie",
           apiData.imdb.getList("movie", "now_playing", 1)
         );
-        array.push(nowPlaying)
+        return setNowPlaying(nowPlaying);
       } catch (error) {
         console.log(error);
       }
     };
+    fetchNowPlaying();
+  }, []);
+
+  useEffect(() => {
     const fetchUpcoming = async () => {
       try {
         const upcoming = await apiData.imdb.getDataArray(
@@ -43,17 +49,14 @@ function useInitialStateMovie() {
           "movie",
           apiData.imdb.getList("movie", "upcoming", 1)
         );
-        array.push(upcoming)
+        return setUpcoming(upcoming);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchPopular();
-    fetchNowPlaying();
     fetchUpcoming();
-    setData(array);
-    console.log(array);
   }, []);
+
   /* useEffect(() => {
     const fetchData = async () => {
       try {
@@ -98,7 +101,7 @@ function useInitialStateMovie() {
     fetchData();
     console.log("Se ejecuto section");
   }, []); */
-  return data;
+  return {popular, nowPlaying,upcoming};
 }
 
 export default useInitialStateMovie;

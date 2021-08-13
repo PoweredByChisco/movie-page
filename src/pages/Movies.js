@@ -9,42 +9,52 @@ import Movie from "../components/Movie";
 
 function Movies() {
   const initialStateMovie = useInitialStateMovie();
-  const initialState = initialStateMovie.data;
-  const section = initialStateMovie.section;
   console.log(initialStateMovie);
 
   return (
     <React.Fragment>
-      {initialStateMovie.length === 0 ? (
-        <h1>Loading...</h1>
+      {initialStateMovie.popular.length === 0 ? (
+        <FrontMovie title="Loading"/>
       ) : (
         <FrontMovie {...initialStateMovie.popular[0]} />
       )}
       {/* <GenresContainer /> */}
       {/* Sections */}
-      {/* <SectionsContainer title="In theathers now">
-        <Section>
-          {initialState.nowPlaying.map((item) => (
-            <Movie key={item.id} {...item} />
-          ))}
-        </Section>
-      </SectionsContainer>
+      {initialStateMovie.nowPlaying.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="In theathers now">
+          <Section>
+            {initialStateMovie.nowPlaying.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-      <SectionsContainer title="Popular">
-        <Section>
-          {initialState.popular.map((item) => (
-            <Movie key={item.id} {...item} />
-          ))}
-        </Section>
-      </SectionsContainer>
+      {initialStateMovie.popular.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Popular">
+          <Section>
+            {initialStateMovie.popular.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-      <SectionsContainer title="Upcoming">
-        <Section>
-          {initialState.upcoming.map((item) => (
-            <Movie key={item.id} {...item} />
-          ))}
-        </Section>
-      </SectionsContainer> */}
+      {initialStateMovie.upcoming.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Upcoming">
+          <Section>
+            {initialStateMovie.upcoming.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
       {/* {section.length === 0 ? (
         <h1>Loading Genres...</h1>
