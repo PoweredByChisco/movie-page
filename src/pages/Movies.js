@@ -10,7 +10,6 @@ import { connect } from "react-redux";
 
 function Movies({myList}) {
   const initialStateMovie = useInitialStateMovie();
-  console.log(initialStateMovie);
 
   return (
     <React.Fragment>

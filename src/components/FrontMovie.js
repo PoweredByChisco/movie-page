@@ -1,7 +1,22 @@
 import React from "react";
+import { connect } from "react-redux";
 import "./styles/FrontMovie.css";
+import { setFavorite } from "../actions";
 
-const FrontMovie = ({ title, backdrop_path, overview, homepage }) => {
+const FrontMovie = (props) => {
+  const { title, backdrop_path, overview, homepage, poster_path, runtime, id } =
+    props;
+  const handleSetFavorite = () => {
+    props.setFavorite({
+      poster_path,
+      title,
+      runtime,
+      overview,
+      backdrop_path,
+      homepage,
+      id
+    });
+  };
   const url = "https://image.tmdb.org/t/p/original";
 
   return (
@@ -19,7 +34,7 @@ const FrontMovie = ({ title, backdrop_path, overview, homepage }) => {
                 <p>+ Info</p>
               </a>
             </button>
-            <button className="btn btn-secondary">
+            <button className="btn btn-secondary" onClick={handleSetFavorite}>
               <p>Watch List</p>
             </button>
           </div>
@@ -29,4 +44,8 @@ const FrontMovie = ({ title, backdrop_path, overview, homepage }) => {
   );
 };
 
-export default FrontMovie;
+const mapDispatchToProps = {
+  setFavorite,
+};
+
+export default connect(null, mapDispatchToProps)(FrontMovie);

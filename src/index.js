@@ -4,18 +4,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import App from "./routes/App";
-import reducer from "./reducers"
+import reducer from "./reducers";
 import useInitialStateMovie from "./hooks/useInitialStateMovie";
 import "./global.css";
 
-
 const initialState = {
-  movies : {},
-  myList: {}
-}
+  movies: {},
+  myList: [],
+  searchResult: {},
+};
 
-const composeEnhancers =
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, initialState, composeEnhancers());
 
 const container = document.getElementById("app");
