@@ -3,15 +3,17 @@ import "./styles/Movie.css";
 import Modal from "./Modal";
 import ModalMovie from "./ModalMovie";
 import { CSSTransition } from "react-transition-group";
+import { connect } from "react-redux";
 
-const Serie = ({
-  poster_path,
-  name,
-  episode_run_time,
-  overview,
-  backdrop_path,
-  homepage,
-}) => {
+const Serie = (props) => {
+  const {
+    poster_path,
+    name,
+    episode_run_time,
+    overview,
+    backdrop_path,
+    homepage,
+  } = props;
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const imgUrl = "https://image.tmdb.org/t/p/w500/";
   const imgUrlOriginal = "https://image.tmdb.org/t/p/original/";
@@ -41,11 +43,12 @@ const Serie = ({
       >
         <Modal isOpen={modalIsOpen} onClose={handleCloseModal}>
           <ModalMovie
-            poster_path={imgUrl + poster_path}
+            poster_path={poster_path}
             title={name}
             overview={overview}
-            backdrop_path={imgUrlOriginal + backdrop_path}
+            backdrop_path={backdrop_path}
             homepage={homepage}
+            {...props}
           />
         </Modal>
       </CSSTransition>
@@ -53,4 +56,4 @@ const Serie = ({
   );
 };
 
-export default Serie;
+export default connect(null, null)(Serie);
