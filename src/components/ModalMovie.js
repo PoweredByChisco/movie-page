@@ -16,26 +16,21 @@ function ModalMovie(props) {
   } = props;
   const handleSetFavorite = () => {
     props.setFavorite({
-      poster_path,
-      title,
-      runtime,
-      overview,
-      backdrop_path,
-      homepage,
-      id,
+      ...props,
     });
   };
+  const imgUrl = "https://image.tmdb.org/t/p/w500/";
+  const imgUrlOriginal = "https://image.tmdb.org/t/p/original/";
 
   const handleDeleteFavorite = (id) => {
     props.removeFavorite(id);
   };
 
-
   return (
     <div className="modal-movie--container">
-      <img src={props.poster_path} alt="" className="poster" />
+      <img src={imgUrl + props.poster_path} alt="" className="poster" />
       <div className="backdrop-container">
-        <img src={props.backdrop_path} alt="" className="backdrop" />
+        <img src={imgUrlOriginal + props.backdrop_path} alt="" className="backdrop" />
       </div>
       <div className="modal-movie--info">
         <h1>{props.title}</h1>
@@ -47,14 +42,14 @@ function ModalMovie(props) {
             </a>
           </button>
           {isList ? (
-            <button className="btn btn-secondary" onClick={() => handleDeleteFavorite(id)}>
+            <button
+              className="btn btn-secondary"
+              onClick={() => handleDeleteFavorite(id)}
+            >
               <p>Remove Watch List</p>
             </button>
           ) : (
-            <button
-              className="btn btn-secondary"
-              onClick={handleSetFavorite}
-            >
+            <button className="btn btn-secondary" onClick={handleSetFavorite}>
               <p>Watch List</p>
             </button>
           )}

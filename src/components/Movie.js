@@ -5,14 +5,12 @@ import ModalMovie from "./ModalMovie";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 
-const imgUrl = "https://image.tmdb.org/t/p/w500/";
-const imgUrlOriginal = "https://image.tmdb.org/t/p/original/";
-
 const Movie = (props) => {
   const { poster_path, title, runtime, overview, backdrop_path, homepage } =
     props;
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const imgUrl = "https://image.tmdb.org/t/p/w500/";
+  const imgUrlOriginal = "https://image.tmdb.org/t/p/original/";
 
   const handleOpenModal = () => {
     setModalIsOpen(true); /* Ojo al selectedData */
@@ -39,11 +37,12 @@ const Movie = (props) => {
       >
         <Modal isOpen={modalIsOpen} onClose={handleCloseModal}>
           <ModalMovie
-            poster_path={imgUrl + poster_path}
+            poster_path={poster_path}
             title={title}
             overview={overview}
-            backdrop_path={imgUrlOriginal + backdrop_path}
+            backdrop_path={backdrop_path}
             homepage={homepage}
+            {...props}
           />
         </Modal>
       </CSSTransition>

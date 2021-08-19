@@ -8,7 +8,7 @@ import Section from "../components/Section";
 import Movie from "../components/Movie";
 import { connect } from "react-redux";
 
-function Movies({myList}) {
+function Movies({ myList }) {
   const initialStateMovie = useInitialStateMovie();
 
   return (
@@ -131,8 +131,8 @@ function Movies({myList}) {
 
 const mapStateToProps = (state) => {
   return {
-    myList: state.myList
-  }
-}
+    myList: state.myList,
+  };
+};
 
-export default connect(mapStateToProps, null)(Movies)
+export default connect(mapStateToProps, null)(Movies);

@@ -5,10 +5,11 @@ import Section from "../components/Section";
 import useInitialStateTv from "../hooks/useInitalStateTv";
 import Serie from "../components/Serie";
 import "./styles/Movies.css";
+import { connect } from "react-redux";
 
-function Tv() {
+function Tv({ myList }) {
   const initialStateTv = useInitialStateTv();
-  console.log(initialStateTv)
+  console.log(initialStateTv);
 
   return (
     <>
@@ -19,6 +20,15 @@ function Tv() {
       )}
 
       {/* Sections */}
+      {myList.length > 0 && (
+        <SectionsContainer title="Watch List">
+          <Section>
+            {myList.map((item) => (
+              <Serie key={item.id} {...item} isList />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
       {initialStateTv.airingToday.length === 0 ? (
         <SectionsContainer title="Loading" />
       ) : (
@@ -106,4 +116,8 @@ function Tv() {
   );
 }
 
-export default Tv;
+const mapStateToProps = (state) => {
+  return { myList: state.myList };
+};
+
+export default connect(mapStateToProps, null)(Tv);
