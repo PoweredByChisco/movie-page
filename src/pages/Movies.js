@@ -6,94 +6,133 @@ import SectionsContainer from "../components/SectionsContainer";
 import useInitialStateMovie from "../hooks/useInitialStateMovie";
 import Section from "../components/Section";
 import Movie from "../components/Movie";
+import { connect } from "react-redux";
 
-function Movies() {
+function Movies({myList}) {
   const initialStateMovie = useInitialStateMovie();
-  const initialState = initialStateMovie.data
-  const section = initialStateMovie.section
 
   return (
     <React.Fragment>
-      {initialState.length === 0 ? (
-        <h1>Loading ...</h1>
+      {initialStateMovie.popular.length === 0 ? (
+        <FrontMovie title="Loading" />
       ) : (
-        <>
-          <FrontMovie {...initialState.popular[0]} />
-          <GenresContainer />
-          {/* Sections */}
-          <SectionsContainer title="In theathers now">
-            <Section>
-              {initialState.nowPlaying.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
-
-          <SectionsContainer title="Popular">
-            <Section>
-              {initialState.popular.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
-
-          <SectionsContainer title="Upcoming">
-            <Section>
-              {initialState.upcoming.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
-        </>
+        <FrontMovie {...initialStateMovie.popular[0]} />
+      )}
+      <GenresContainer />
+      {/* Sections */}
+      {myList.length > 0 && (
+        <SectionsContainer title="Watch List">
+          <Section>
+            {myList.map((item) => (
+              <Movie key={item.id} {...item} isList />
+            ))}
+          </Section>
+        </SectionsContainer>
       )}
 
-      {section.length === 0 ? (
-        <h1>Loading Genres...</h1>
+      {initialStateMovie.nowPlaying.length === 0 ? (
+        <SectionsContainer title="Loading" />
       ) : (
-        <>
-          <SectionsContainer title="Horror">
-            <Section>
-              {section.horror.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
+        <SectionsContainer title="In theathers now">
+          <Section>
+            {initialStateMovie.nowPlaying.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-          <SectionsContainer title="Action">
-            <Section>
-              {section.action.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
+      {initialStateMovie.popular.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Popular">
+          <Section>
+            {initialStateMovie.popular.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-          <SectionsContainer title="Animation">
-            <Section>
-              {section.animation.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
+      {initialStateMovie.upcoming.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Upcoming">
+          <Section>
+            {initialStateMovie.upcoming.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-          <SectionsContainer title="Fantasy">
-            <Section>
-              {section.fantasy.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
+      {initialStateMovie.horror.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Horror">
+          <Section>
+            {initialStateMovie.horror.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-          <SectionsContainer title="Adventure">
-            <Section>
-              {section.adventure.map((item) => (
-                <Movie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
-        </>
+      {initialStateMovie.action.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Action">
+          <Section>
+            {initialStateMovie.action.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
+
+      {initialStateMovie.animation.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Animation">
+          <Section>
+            {initialStateMovie.animation.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
+
+      {initialStateMovie.fantasy.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Fantasy">
+          <Section>
+            {initialStateMovie.fantasy.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
+
+      {initialStateMovie.adventure.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Adventure">
+          <Section>
+            {initialStateMovie.adventure.map((item) => (
+              <Movie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
       )}
     </React.Fragment>
   );
 }
 
-export default Movies;
+const mapStateToProps = (state) => {
+  return {
+    myList: state.myList
+  }
+}
+
+export default connect(mapStateToProps, null)(Movies)

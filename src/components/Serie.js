@@ -38,15 +38,13 @@ const Serie = ({
         in={modalIsOpen}
         classNames="show"
         unmountOnExit
-        onEnter={() => console.log("On enter")}
-        onExiting={() => console.log("Se ejecuto on Exited")}
       >
         <Modal isOpen={modalIsOpen} onClose={handleCloseModal}>
           <ModalMovie
-            src={imgUrl + poster_path}
+            poster_path={imgUrl + poster_path}
             title={name}
             overview={overview}
-            backdrop={imgUrlOriginal + backdrop_path}
+            backdrop_path={imgUrlOriginal + backdrop_path}
             homepage={homepage}
           />
         </Modal>

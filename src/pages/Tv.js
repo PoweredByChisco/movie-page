@@ -8,79 +8,99 @@ import "./styles/Movies.css";
 
 function Tv() {
   const initialStateTv = useInitialStateTv();
-  const initialState = initialStateTv.data;
-  const section = initialStateTv.section;
+  console.log(initialStateTv)
 
   return (
     <>
-      {initialState.length === 0 ? (
-        <h1>Loading...</h1>
+      {initialStateTv.popular.length === 0 ? (
+        <FrontSerie title="Loading" />
       ) : (
-        <>
-          <FrontSerie {...initialState.popular[0]} />
-          {/* Sections */}
-          <SectionsContainer title="Popular">
-            <Section>
-              {initialState.popular.map((item) => (
-                <Serie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
-
-          <SectionsContainer title="Airign Today">
-            <Section>
-              {initialState.airingToday.map((item) => (
-                <Serie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
-        </>
+        <FrontSerie {...initialStateTv.popular[0]} />
       )}
 
-      {section.length === 0 ? (
-        <h1>Loading genres...</h1>
+      {/* Sections */}
+      {initialStateTv.airingToday.length === 0 ? (
+        <SectionsContainer title="Loading" />
       ) : (
-        <>
-          <SectionsContainer title="Action-Adventures">
-            <Section>
-              {section.actionAdventure.map((item) => (
-                <Serie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
+        <SectionsContainer title="Airing Today">
+          <Section>
+            {initialStateTv.airingToday.map((item) => (
+              <Serie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-          <SectionsContainer title="Documentary">
-            <Section>
-              {section.documentary.map((item) => (
-                <Serie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
+      {initialStateTv.popular.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Popular">
+          <Section>
+            {initialStateTv.popular.map((item) => (
+              <Serie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-          <SectionsContainer title="Scifi">
-            <Section>
-              {section.scifi.map((item) => (
-                <Serie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
+      {initialStateTv.actionAdventure.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Action and Adventure">
+          <Section>
+            {initialStateTv.actionAdventure.map((item) => (
+              <Serie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-          <SectionsContainer title="Comedy">
-            <Section>
-              {section.comedy.map((item) => (
-                <Serie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
+      {initialStateTv.animation.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Animation">
+          <Section>
+            {initialStateTv.animation.map((item) => (
+              <Serie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
 
-          <SectionsContainer title="Animation">
-            <Section>
-              {section.animation.map((item) => (
-                <Serie key={item.id} {...item} />
-              ))}
-            </Section>
-          </SectionsContainer>
-        </>
+      {initialStateTv.documentary.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Documentary">
+          <Section>
+            {initialStateTv.documentary.map((item) => (
+              <Serie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
+
+      {initialStateTv.scifi.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Scifi">
+          <Section>
+            {initialStateTv.scifi.map((item) => (
+              <Serie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
+      )}
+
+      {initialStateTv.comedy.length === 0 ? (
+        <SectionsContainer title="Loading" />
+      ) : (
+        <SectionsContainer title="Comedy">
+          <Section>
+            {initialStateTv.comedy.map((item) => (
+              <Serie key={item.id} {...item} />
+            ))}
+          </Section>
+        </SectionsContainer>
       )}
     </>
   );
