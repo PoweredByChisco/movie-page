@@ -16,7 +16,6 @@ const Serie = (props) => {
   } = props;
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const imgUrl = "https://image.tmdb.org/t/p/w500/";
-  const imgUrlOriginal = "https://image.tmdb.org/t/p/original/";
 
   const handleOpenModal = () => {
     setModalIsOpen(true); /* Ojo al selectedData */

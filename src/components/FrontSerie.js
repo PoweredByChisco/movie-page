@@ -3,9 +3,15 @@ import "./styles/FrontMovie.css";
 import apiData from "../apiData";
 import PageLoading from "../components/PageLoading";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { setFavorite } from "../actions";
 
-const FrontSerie = ({ name, backdrop_path, overview, homepage }) => {
+const FrontSerie = (props) => {
+  const { name, backdrop_path, overview, homepage, id } = props;
   const url = "https://image.tmdb.org/t/p/original";
+  const handleSetFavorite = () => {
+    props.setFavorite({ ...props });
+  };
 
   return (
     <React.Fragment>
@@ -23,7 +29,7 @@ const FrontSerie = ({ name, backdrop_path, overview, homepage }) => {
                   <p>+ Info</p>
                 </a>
               </button>
-              <button className="btn btn-secondary">
+              <button className="btn btn-secondary" onClick={handleSetFavorite}>
                 <p>Watch List</p>
               </button>
             </div>
@@ -34,4 +40,8 @@ const FrontSerie = ({ name, backdrop_path, overview, homepage }) => {
   );
 };
 
-export default FrontSerie;
+const mapDispatchToProps = {
+  setFavorite,
+};
+
+export default connect(null, mapDispatchToProps)(FrontSerie);

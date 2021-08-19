@@ -8,13 +8,7 @@ const FrontMovie = (props) => {
     props;
   const handleSetFavorite = () => {
     props.setFavorite({
-      poster_path,
-      title,
-      runtime,
-      overview,
-      backdrop_path,
-      homepage,
-      id
+      ...props
     });
   };
   const url = "https://image.tmdb.org/t/p/original";
