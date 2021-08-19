@@ -21,10 +21,10 @@ function Movies({myList}) {
       <GenresContainer />
       {/* Sections */}
       {myList.length > 0 && (
-        <SectionsContainer title="My list">
+        <SectionsContainer title="Watch List">
           <Section>
             {myList.map((item) => (
-              <Movie key={item.id} {...item} />
+              <Movie key={item.id} {...item} isList />
             ))}
           </Section>
         </SectionsContainer>

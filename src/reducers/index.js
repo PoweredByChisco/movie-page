@@ -14,6 +14,12 @@ const reducer = (state, action) => {
       return {
         myList: [...state.myList, action.payload]
       };
+    
+      case actions.removeFavorite:
+        return {
+          ...state,
+          myList: state.myList.filter((items) => items.id !== action.payload),
+        }
 
     default:
       return state;

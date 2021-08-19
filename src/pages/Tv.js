@@ -8,6 +8,7 @@ import "./styles/Movies.css";
 
 function Tv() {
   const initialStateTv = useInitialStateTv();
+  console.log(initialStateTv)
 
   return (
     <>

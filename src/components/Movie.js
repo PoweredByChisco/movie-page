@@ -3,6 +3,10 @@ import "./styles/Movie.css";
 import Modal from "./Modal";
 import ModalMovie from "./ModalMovie";
 import { CSSTransition } from "react-transition-group";
+import { connect } from "react-redux";
+
+const imgUrl = "https://image.tmdb.org/t/p/w500/";
+const imgUrlOriginal = "https://image.tmdb.org/t/p/original/";
 
 const Movie = (props) => {
   const { poster_path, title, runtime, overview, backdrop_path, homepage } =
@@ -32,17 +36,18 @@ const Movie = (props) => {
         in={modalIsOpen}
         classNames="show"
         unmountOnExit
-        onEnter={() => console.log("On enter")}
-        onExiting={() => console.log("Se ejecuto on Exited")}
       >
         <Modal isOpen={modalIsOpen} onClose={handleCloseModal}>
           <ModalMovie
-            {...props}
+            poster_path={imgUrl + poster_path}
+            title={title}
+            overview={overview}
+            backdrop_path={imgUrlOriginal + backdrop_path}
+            homepage={homepage}
           />
         </Modal>
       </CSSTransition>
     </React.Fragment>
   );
 };
-
-export default Movie;
+export default connect(null, null)(Movie);
