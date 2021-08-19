@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { connect } from "react-redux";
 import { setFavorite, removeFavorite } from "../actions";
 import "./styles/ModalMovie.css";
@@ -14,10 +15,12 @@ function ModalMovie(props) {
     id,
     isList,
   } = props;
+  const [listed, setListed] = useState(false)
   const handleSetFavorite = () => {
     props.setFavorite({
       ...props,
     });
+    setListed(true)
   };
   const imgUrl = "https://image.tmdb.org/t/p/w500/";
   const imgUrlOriginal = "https://image.tmdb.org/t/p/original/";
@@ -25,6 +28,8 @@ function ModalMovie(props) {
   const handleDeleteFavorite = (id) => {
     props.removeFavorite(id);
   };
+
+  console.log(props)
 
   return (
     <div className="modal-movie--container">
@@ -53,6 +58,7 @@ function ModalMovie(props) {
               <p>Watch List</p>
             </button>
           )}
+          {/* {!listed && <h1>Hola</h1>} */}
         </div>
       </div>
     </div>
