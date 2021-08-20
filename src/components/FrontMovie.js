@@ -2,14 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import "./styles/FrontMovie.css";
 import { setFavorite } from "../actions";
+import { useState } from "react";
 
 const FrontMovie = (props) => {
   const { title, backdrop_path, overview, homepage, poster_path, runtime, id } =
     props;
+  const [listed, setListed] = useState(false);
   const handleSetFavorite = () => {
-    props.setFavorite({
-      ...props
-    });
+    props.setFavorite({ ...props });
+    setListed(true);
   };
   const url = "https://image.tmdb.org/t/p/original";
 
@@ -28,9 +29,11 @@ const FrontMovie = (props) => {
                 <p>+ Info</p>
               </a>
             </button>
-            <button className="btn btn-secondary" onClick={handleSetFavorite}>
-              <p>Watch List</p>
-            </button>
+            {!listed && (
+              <button className="btn btn-secondary" onClick={handleSetFavorite}>
+                <p>Watch List</p>
+              </button>
+            )}
           </div>
         </div>
       </div>

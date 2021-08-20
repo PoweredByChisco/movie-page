@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles/FrontMovie.css";
 import apiData from "../apiData";
 import PageLoading from "../components/PageLoading";
@@ -8,9 +8,11 @@ import { setFavorite } from "../actions";
 
 const FrontSerie = (props) => {
   const { name, backdrop_path, overview, homepage, id } = props;
+  const [listed, setListed] = useState(false);
   const url = "https://image.tmdb.org/t/p/original";
   const handleSetFavorite = () => {
     props.setFavorite({ ...props });
+    setListed(true);
   };
 
   return (
@@ -29,9 +31,14 @@ const FrontSerie = (props) => {
                   <p>+ Info</p>
                 </a>
               </button>
-              <button className="btn btn-secondary" onClick={handleSetFavorite}>
-                <p>Watch List</p>
-              </button>
+              {!listed && (
+                <button
+                  className="btn btn-secondary"
+                  onClick={handleSetFavorite}
+                >
+                  <p>Watch List</p>
+                </button>
+              )}
             </div>
           </div>
         </div>
