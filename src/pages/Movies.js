@@ -7,8 +7,10 @@ import useInitialStateMovie from "../hooks/useInitialStateMovie";
 import Section from "../components/Section";
 import Movie from "../components/Movie";
 import { connect } from "react-redux";
+import * as moviesActions from "../actions/moviesActions"
 
-function Movies({ myList }) {
+function Movies(props) {
+  const { myList, movies } = props;
   const initialStateMovie = useInitialStateMovie();
 
   return (
@@ -19,8 +21,8 @@ function Movies({ myList }) {
         <FrontMovie {...initialStateMovie.popular[0]} />
       )}
       <GenresContainer />
-      {/* Sections */}
-      {myList.length > 0 && (
+
+      {/* {myList.length > 0 && (
         <SectionsContainer title="Watch List">
           <Section>
             {myList.map((item) => (
@@ -28,7 +30,7 @@ function Movies({ myList }) {
             ))}
           </Section>
         </SectionsContainer>
-      )}
+      )} */}
 
       {initialStateMovie.nowPlaying.length === 0 ? (
         <SectionsContainer title="Loading" />
@@ -130,9 +132,7 @@ function Movies({ myList }) {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    myList: state.myList,
-  };
+  return state.moviesReducer
 };
 
-export default connect(mapStateToProps, null)(Movies);
+export default connect(mapStateToProps, moviesActions)(Movies);
