@@ -1,4 +1,11 @@
-import { types } from "../actions/types/moviesTypes";
+import {
+  getMovies,
+  loading,
+  error,
+  setFavorite,
+  removeFavorite,
+  getSearch,
+} from "../actions/types/moviesTypes";
 
 const INITIAL_STATE = {
   movies: [],
@@ -11,31 +18,31 @@ const INITIAL_STATE = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case types.getMovies:
+    case getMovies:
       return { ...state, movies: action.payload, loading: false };
 
-    case types.loading: {
+    case loading: {
       return { ...state, loading: true };
     }
 
-    case types.error: {
+    case error: {
       return { ...state, error: action.payload, loading: false };
     }
 
-    case types.setFavorite:
+    case setFavorite:
       const exist = state.myList.find((item) => item.id === action.payload.id);
       if (exist) return { ...state };
       return {
         myList: [...state.myList, action.payload],
       };
 
-    case types.removeFavorite:
+    case removeFavorite:
       return {
         ...state,
         myList: state.myList.filter((items) => items.id !== action.payload),
       };
 
-    case types.getSearch:
+    case getSearch:
       if (action.payload === "") {
         return {
           ...state,

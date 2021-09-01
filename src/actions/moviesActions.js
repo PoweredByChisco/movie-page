@@ -1,20 +1,20 @@
 import useInitialStateMovie from "../hooks/useInitialStateMovie";
-import { types } from "./types/moviesTypes";
+import { getMovies, loading, error } from "./types/moviesTypes";
 
 export const getAll = () => async (dispatch) => {
   dispatch({
-    type: types.loading,
+    type: loading,
   });
   try {
     const response = "Hola";
     console.log(response)
     dispatch({
-      type: types.getMovies,
+      type: getMovies,
       payload: response,
     });
   } catch (err) {
     dispatch({
-      type: types.error,
+      type: error,
       payload: err.message,
     });
   }

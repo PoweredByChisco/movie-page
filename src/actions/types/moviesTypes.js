@@ -1,9 +1,7 @@
-export const types = {
-  getMovies: "GET_MOVIES",
-  loading: "LOADING_MOVIES",
-  error: "ERROR_MOVIES",
-  setMovieData: "SET_MOVIE_DATA",
-  setFavorite: "SET_FAVORITE",
-  removeFavorite: "REMOVE_FAVORITE",
-  getSearch: "GET_SEARCH",
-};
+export const getMovies = "GET_MOVIES";
+export const loading = "LOADING_MOVIES";
+export const error = "ERROR_MOVIES";
+export const setMovieData = "SET_MOVIE_DATA";
+export const setFavorite = "SET_FAVORITE";
+export const removeFavorite = "REMOVE_FAVORITE";
+export const getSearch = "GET_SEARCH";
