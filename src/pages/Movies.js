@@ -12,6 +12,9 @@ import * as moviesActions from "../actions/moviesActions"
 function Movies(props) {
   const { myList, movies } = props;
   const initialStateMovie = useInitialStateMovie();
+  useEffect(() => {
+    props.getAll()
+  }, [])
   console.log(props)
   return (
     <React.Fragment>
