@@ -1,16 +1,20 @@
 import useInitialStateMovie from "../hooks/useInitialStateMovie";
-import { getMovies, loading, error } from "./types/moviesTypes";
+import { getMovies, loading, error, setMovieData } from "./types/moviesTypes";
+import apiData from "../apiData";
 
 export const getAll = () => async (dispatch) => {
   dispatch({
     type: loading,
   });
   try {
-    const response = "Hola";
-    console.log(response)
+    const response = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.getList("movie", "popular", 1)
+    );
     dispatch({
       type: getMovies,
-      payload: response,
+      payload: [response],
     });
   } catch (err) {
     dispatch({
@@ -19,3 +23,10 @@ export const getAll = () => async (dispatch) => {
     });
   }
 };
+
+export const setData = (payload) => async (dispatch) => {
+  dispatch({
+    type: setMovieData,
+    payload: payload
+  })
+}

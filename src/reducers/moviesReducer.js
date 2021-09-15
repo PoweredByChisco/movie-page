@@ -5,6 +5,7 @@ import {
   setFavorite,
   removeFavorite,
   getSearch,
+  setMovieData,
 } from "../actions/types/moviesTypes";
 
 const INITIAL_STATE = {
@@ -53,6 +54,12 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         searchResult: action.payload,
+      };
+
+    case setMovieData:
+      return {
+        ...state,
+        movies: action.payload,
       };
 
     default:

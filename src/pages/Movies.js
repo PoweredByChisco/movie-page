@@ -11,11 +11,13 @@ import * as moviesActions from "../actions/moviesActions"
 
 function Movies(props) {
   const { myList, movies } = props;
+  const [moviesData, setMoviesData] = useState([])
   const initialStateMovie = useInitialStateMovie();
   useEffect(() => {
     props.getAll()
+    console.log("useEffect it happens")
   }, [])
-  console.log(props)
+  console.log("Props ",props)
   return (
     <React.Fragment>
       {initialStateMovie.popular.length === 0 ? (
