@@ -6,6 +6,8 @@ import {
   removeFavorite,
   getSearch,
   setMovieData,
+  getPopularMovies,
+  getNowPlayingMovies,
 } from "../actions/types/moviesTypes";
 
 const INITIAL_STATE = {
@@ -20,15 +22,20 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case getMovies:
-      return { ...state, movies: action.payload, loading: false };
+      return { ...state, movies: [action.payload], loading: false };
 
-    case loading: {
+    case getPopularMovies:
+      return { ...state, movies: {popularMovies: action.payload}, loading: false };
+
+    case getNowPlayingMovies:
+      return { ...state, movies: {nowPlayingMovies: action.payload}, loading: false };
+
+
+    case loading:
       return { ...state, loading: true };
-    }
 
-    case error: {
+    case error:
       return { ...state, error: action.payload, loading: false };
-    }
 
     case setFavorite:
       const exist = state.myList.find((item) => item.id === action.payload.id);

@@ -8,17 +8,15 @@ import Section from "../components/Section";
 import Movie from "../components/Movie";
 import { connect } from "react-redux";
 import * as moviesActions from "../actions/moviesActions";
-import useData from "../hooks/useData";
 
 function Movies(props) {
   const { myList, movies } = props;
   const [moviesData, setMoviesData] = useState([]);
   const initialStateMovie = useInitialStateMovie();
-  const data = useData();
-  console.log("Data ", data);
 
   useEffect(() => {
-    props.setData(data);
+    props.getPopular();
+    props.getNowPlaying();
     console.log("useEffect it happens");
   }, []);
   console.log("Props ", props);
