@@ -7,17 +7,21 @@ import useInitialStateMovie from "../hooks/useInitialStateMovie";
 import Section from "../components/Section";
 import Movie from "../components/Movie";
 import { connect } from "react-redux";
-import * as moviesActions from "../actions/moviesActions"
+import * as moviesActions from "../actions/moviesActions";
+import useData from "../hooks/useData";
 
 function Movies(props) {
   const { myList, movies } = props;
-  const [moviesData, setMoviesData] = useState([])
+  const [moviesData, setMoviesData] = useState([]);
   const initialStateMovie = useInitialStateMovie();
+  const data = useData();
+  console.log("Data ", data);
+
   useEffect(() => {
-    props.getAll()
-    console.log("useEffect it happens")
-  }, [])
-  console.log("Props ",props)
+    props.setData(data);
+    console.log("useEffect it happens");
+  }, []);
+  console.log("Props ", props);
   return (
     <React.Fragment>
       {initialStateMovie.popular.length === 0 ? (
@@ -137,7 +141,7 @@ function Movies(props) {
 }
 
 const mapStateToProps = (state) => {
-  return state.moviesReducer
+  return state.moviesReducer;
 };
 
 export default connect(mapStateToProps, moviesActions)(Movies);
