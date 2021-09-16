@@ -42,7 +42,7 @@ export const getPopular = () => async (dispatch) => {
     );
     dispatch({
       type: getPopularMovies,
-      payload: [response],
+      payload: response,
     });
   } catch (err) {
     dispatch({
@@ -64,7 +64,7 @@ export const getNowPlaying = () => async (dispatch) => {
     );
     dispatch({
       type: getNowPlayingMovies,
-      payload: [response],
+      payload: response,
     });
   } catch (err) {
     dispatch({

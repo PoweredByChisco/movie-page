@@ -25,11 +25,18 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, movies: [action.payload], loading: false };
 
     case getPopularMovies:
-      return { ...state, movies: {popularMovies: action.payload}, loading: false };
+      return {
+        ...state,
+        movies: { ...state.movies, popularMovies: action.payload },
+        loading: false,
+      };
 
     case getNowPlayingMovies:
-      return { ...state, movies: {nowPlayingMovies: action.payload}, loading: false };
-
+      return {
+        ...state,
+        movies: { ...state.movies, nowPlayingMovies: action.payload },
+        loading: false,
+      };
 
     case loading:
       return { ...state, loading: true };
