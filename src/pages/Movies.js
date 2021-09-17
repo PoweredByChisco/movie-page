@@ -17,6 +17,9 @@ function Movies(props) {
   useEffect(() => {
     props.getPopular();
     props.getNowPlaying();
+    props.getUpcomingMovies();
+    props.getHorrorMovies();
+    props.getActionMovies();
     console.log("useEffect it happens");
   }, []);
   console.log("Props ", props);

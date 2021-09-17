@@ -1,13 +1,13 @@
 import {
-  getMovies,
+  movies,
   loading,
   error,
   setFavorite,
   removeFavorite,
   getSearch,
   setMovieData,
-  getPopularMovies,
-  getNowPlayingMovies,
+  popularMovies,
+  nowPlayingMovies,
 } from "../actions/types/moviesTypes";
 
 const INITIAL_STATE = {
@@ -21,17 +21,17 @@ const INITIAL_STATE = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case getMovies:
+    case movies:
       return { ...state, movies: [action.payload], loading: false };
 
-    case getPopularMovies:
+    case popularMovies:
       return {
         ...state,
         movies: { ...state.movies, popularMovies: action.payload },
         loading: false,
       };
 
-    case getNowPlayingMovies:
+    case nowPlayingMovies:
       return {
         ...state,
         movies: { ...state.movies, nowPlayingMovies: action.payload },

@@ -1,14 +1,22 @@
 import {
-  getMovies,
+  movies,
   loading,
   error,
   setMovieData,
-  getPopularMovies,
-  getNowPlayingMovies,
+  popularMovies,
+  nowPlayingMovies,
+  upcomingMovies,
+  horrorMovies,
+  actionMovies,
+  adventureMovies,
+  animationMovies,
+  fantasyMovies,
 } from "./types/moviesTypes";
 import apiData from "../apiData";
 
-export const getAll = () => async (dispatch) => {
+/* Get API */
+
+export const getAllMovies = () => async (dispatch) => {
   dispatch({
     type: loading,
   });
@@ -19,7 +27,7 @@ export const getAll = () => async (dispatch) => {
       apiData.imdb.getList("movie", "popular", 1)
     );
     dispatch({
-      type: getMovies,
+      type: movies,
       payload: [response],
     });
   } catch (err) {
@@ -30,7 +38,7 @@ export const getAll = () => async (dispatch) => {
   }
 };
 
-export const getPopular = () => async (dispatch) => {
+export const getPopularMovies = () => async (dispatch) => {
   dispatch({
     type: loading,
   });
@@ -41,7 +49,7 @@ export const getPopular = () => async (dispatch) => {
       apiData.imdb.getList("movie", "popular", 1)
     );
     dispatch({
-      type: getPopularMovies,
+      type: popularMovies,
       payload: response,
     });
   } catch (err) {
@@ -52,7 +60,7 @@ export const getPopular = () => async (dispatch) => {
   }
 };
 
-export const getNowPlaying = () => async (dispatch) => {
+export const getNowPlayingMovies = () => async (dispatch) => {
   dispatch({
     type: loading,
   });
@@ -63,7 +71,7 @@ export const getNowPlaying = () => async (dispatch) => {
       apiData.imdb.getList("movie", "now_playing", 1)
     );
     dispatch({
-      type: getNowPlayingMovies,
+      type: nowPlayingMovies,
       payload: response,
     });
   } catch (err) {
@@ -73,6 +81,140 @@ export const getNowPlaying = () => async (dispatch) => {
     });
   }
 };
+
+export const getUpcomingMovies = () => async (dispatch) => {
+  dispatch({
+    type: loading,
+  });
+  try {
+    const response = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.getList("movie", "upcoming", 1)
+    );
+    dispatch({
+      type: upcomingMovies,
+      payload: response,
+    });
+  } catch (err) {
+    dispatch({
+      type: error,
+      payload: err.message,
+    });
+  }
+};
+
+export const getHorrorMovies = () => async (dispatch) => {
+  dispatch({
+    type: loading,
+  });
+  try {
+    const response = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.genres.getList("movie", "popularity.desc", 1, 27)
+    );
+    dispatch({
+      type: horrorMovies,
+      payload: response,
+    });
+  } catch (err) {
+    dispatch({
+      type: error,
+      payload: err.message,
+    });
+  }
+};
+
+export const getAdventureMovies = () => async (dispatch) => {
+  dispatch({
+    type: loading,
+  });
+  try {
+    const response = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.genres.getList("movie", "popularity.desc", 1, 12)
+    );
+    dispatch({
+      type: adventureMovies,
+      payload: response,
+    });
+  } catch (err) {
+    dispatch({
+      type: error,
+      payload: err.message,
+    });
+  }
+};
+
+export const getActionMovies = () => async (dispatch) => {
+  dispatch({
+    type: loading,
+  });
+  try {
+    const response = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.genres.getList("movie", "popularity.desc", 1, 28)
+    );
+    dispatch({
+      type: actionMovies,
+      payload: response,
+    });
+  } catch (err) {
+    dispatch({
+      type: error,
+      payload: err.message,
+    });
+  }
+};
+
+export const getAnimationMovies = () => async (dispatch) => {
+  dispatch({
+    type: loading,
+  });
+  try {
+    const response = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.genres.getList("movie", "popularity.desc", 1, 16)
+    );
+    dispatch({
+      type: animationMovies,
+      payload: response,
+    });
+  } catch (err) {
+    dispatch({
+      type: error,
+      payload: err.message,
+    });
+  }
+};
+
+export const getFantasyMovies = () => async (dispatch) => {
+  dispatch({
+    type: loading,
+  });
+  try {
+    const response = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.genres.getList("movie", "popularity.desc", 1, 14)
+    );
+    dispatch({
+      type: fantasyMovies,
+      payload: response,
+    });
+  } catch (err) {
+    dispatch({
+      type: error,
+      payload: err.message,
+    });
+  }
+};
+
+/* ---- */
 
 export const setData = (payload) => async (dispatch) => {
   dispatch({
