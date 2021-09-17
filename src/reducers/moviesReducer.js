@@ -29,7 +29,7 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     /* get API */
     case movies:
-      return { ...state, movies: [action.payload], loading: false };
+      return { ...state, movies: action.payload, loading: false };
 
     case popularMovies:
       return {

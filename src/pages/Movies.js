@@ -3,7 +3,7 @@ import "./styles/Movies.css";
 import FrontMovie from "../components/FrontMovie";
 import GenresContainer from "../components/GenresContainer";
 import SectionsContainer from "../components/SectionsContainer";
-import useInitialStateMovie from "../hooks/useInitialStateMovie";
+/* import useInitialStateMovie from "../hooks/useInitialStateMovie"; */
 import Section from "../components/Section";
 import Movie from "../components/Movie";
 import { connect } from "react-redux";
@@ -11,37 +11,37 @@ import * as moviesActions from "../actions/moviesActions";
 
 function Movies(props) {
   const { myList, movies, moviesReducer } = props;
-  const initialStateMovie = useInitialStateMovie();
+  /* const initialStateMovie = useInitialStateMovie(); */
 
   useEffect(() => {
-    props.getPopularMovies();
-    props.getNowPlayingMovies();
-    props.getUpcomingMovies();
-    props.getHorrorMovies();
-    props.getActionMovies();
-    props.getAdventureMovies();
-    props.getAnimationMovies();
-    props.getFantasyMovies();
+    props.getAllMovies();
     console.log("useEffect it happens");
   }, []);
   console.log("Props ", props);
   console.log("Movies Reducer ", props.loading);
-  
-  if (props.loading === true) {
-    return <p>Loading</p>
-  }
-  
+
+  // console.log("Antes de cargar ", props.movies.popular);
+
+
+ /*  if (props.loading === true) {
+    return <p>Loading</p>;
+  } */
+
+  // console.log("Despues de cargar ", props.movies.popular);
+
+
+
   /* console.log("Front Movie ", movies.popularMovies[0]); */
   return (
     <React.Fragment>
-      {props.loading === true ? (
+      {props.loading === true  ? (
         <FrontMovie title="Loading" />
       ) : (
-        <FrontMovie {...initialStateMovie.popular[0]} />
-      )}
+        <FrontMovie {...props.movies.mostPopular} />
+        )}
       <GenresContainer />
 
-      {/* {myList.length > 0 && (
+      {myList.length > 0 && (
         <SectionsContainer title="Watch List">
           <Section>
             {myList.map((item) => (
@@ -49,103 +49,103 @@ function Movies(props) {
             ))}
           </Section>
         </SectionsContainer>
-      )} */}
+      )}
 
-      {/* {initialStateMovie.nowPlaying.length === 0 ? (
+      {props.loading === true ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="In theathers now">
           <Section>
-            {initialStateMovie.nowPlaying.map((item) => (
+            {props.movies.nowPlaying.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.popular.length === 0 ? (
+      {props.loading === true ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Popular">
           <Section>
-            {initialStateMovie.popular.map((item) => (
+            {props.movies.popular.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.upcoming.length === 0 ? (
+      {props.loading === true ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Upcoming">
           <Section>
-            {initialStateMovie.upcoming.map((item) => (
+            {props.movies.upcoming.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.horror.length === 0 ? (
+      {props.loading === true ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Horror">
           <Section>
-            {initialStateMovie.horror.map((item) => (
+            {props.movies.horror.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.action.length === 0 ? (
+      {props.loading === true ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Action">
           <Section>
-            {initialStateMovie.action.map((item) => (
+            {props.movies.action.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.animation.length === 0 ? (
+      {props.loading === true ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Animation">
           <Section>
-            {initialStateMovie.animation.map((item) => (
+            {props.movies.animation.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.fantasy.length === 0 ? (
+      {props.loading === true ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Fantasy">
           <Section>
-            {initialStateMovie.fantasy.map((item) => (
+            {props.movies.fantasy.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.adventure.length === 0 ? (
+      {props.loading === true ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Adventure">
           <Section>
-            {initialStateMovie.adventure.map((item) => (
+            {props.movies.adventure.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
-      )} */}
+      )}
     </React.Fragment>
   );
 }

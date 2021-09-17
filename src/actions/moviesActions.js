@@ -21,14 +21,52 @@ export const getAllMovies = () => async (dispatch) => {
     type: loading,
   });
   try {
-    const response = await apiData.imdb.getDataArray(
+    const popular = await apiData.imdb.getDataArray(
       10,
       "movie",
       apiData.imdb.getList("movie", "popular", 1)
     );
+    const mostPopular = popular[0]
+
+    const nowPlaying = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.getList("movie", "now_playing", 1)
+    );
+
+    const upcoming = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.getList("movie", "upcoming", 1)
+    );
+
+    const horror = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.genres.getList("movie", "popularity.desc", 1, 27)
+    );
+
+    const adventure = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.genres.getList("movie", "popularity.desc", 1, 12)
+    );
+
+    const action = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.genres.getList("movie", "popularity.desc", 1, 28)
+    );
+
+    const fantasy = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.genres.getList("movie", "popularity.desc", 1, 14)
+    );
+
     dispatch({
       type: movies,
-      payload: [response],
+      payload: {mostPopular, popular, nowPlaying, upcoming, horror, adventure, action, fantasy },
     });
   } catch (err) {
     dispatch({
