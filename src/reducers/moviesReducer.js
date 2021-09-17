@@ -8,6 +8,12 @@ import {
   setMovieData,
   popularMovies,
   nowPlayingMovies,
+  upcomingMovies,
+  horrorMovies,
+  actionMovies,
+  adventureMovies,
+  animationMovies,
+  fantasyMovies,
 } from "../actions/types/moviesTypes";
 
 const INITIAL_STATE = {
@@ -21,6 +27,7 @@ const INITIAL_STATE = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    /* get API */
     case movies:
       return { ...state, movies: [action.payload], loading: false };
 
@@ -38,6 +45,49 @@ export default (state = INITIAL_STATE, action) => {
         loading: false,
       };
 
+    case upcomingMovies:
+      return {
+        ...state,
+        movies: { ...state.movies, upcomingMovies: action.payload },
+        loading: false,
+      };
+
+    case horrorMovies:
+      return {
+        ...state,
+        movies: { ...state.movies, horrorMovies: action.payload },
+        loading: false,
+      };
+
+    case actionMovies:
+      return {
+        ...state,
+        movies: { ...state.movies, actionMovies: action.payload },
+        loading: false,
+      };
+
+    case adventureMovies:
+      return {
+        ...state,
+        movies: { ...state.movies, adventureMovies: action.payload },
+        loading: false,
+      };
+
+    case animationMovies:
+      return {
+        ...state,
+        movies: { ...state.movies, animationMovies: action.payload },
+        loading: false,
+      };
+
+    case fantasyMovies:
+      return {
+        ...state,
+        movies: { ...state.movies, fantasyMovies: action.payload },
+        loading: false,
+      };
+
+    /* --- */
     case loading:
       return { ...state, loading: true };
 

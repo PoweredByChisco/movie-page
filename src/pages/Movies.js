@@ -10,22 +10,31 @@ import { connect } from "react-redux";
 import * as moviesActions from "../actions/moviesActions";
 
 function Movies(props) {
-  const { myList, movies } = props;
-  const [moviesData, setMoviesData] = useState([]);
+  const { myList, movies, moviesReducer } = props;
   const initialStateMovie = useInitialStateMovie();
 
   useEffect(() => {
-    props.getPopular();
-    props.getNowPlaying();
+    props.getPopularMovies();
+    props.getNowPlayingMovies();
     props.getUpcomingMovies();
     props.getHorrorMovies();
     props.getActionMovies();
+    props.getAdventureMovies();
+    props.getAnimationMovies();
+    props.getFantasyMovies();
     console.log("useEffect it happens");
   }, []);
   console.log("Props ", props);
+  console.log("Movies Reducer ", props.loading);
+  
+  if (props.loading === true) {
+    return <p>Loading</p>
+  }
+  
+  /* console.log("Front Movie ", movies.popularMovies[0]); */
   return (
     <React.Fragment>
-      {initialStateMovie.popular.length === 0 ? (
+      {props.loading === true ? (
         <FrontMovie title="Loading" />
       ) : (
         <FrontMovie {...initialStateMovie.popular[0]} />
@@ -42,7 +51,7 @@ function Movies(props) {
         </SectionsContainer>
       )} */}
 
-      {initialStateMovie.nowPlaying.length === 0 ? (
+      {/* {initialStateMovie.nowPlaying.length === 0 ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="In theathers now">
@@ -136,7 +145,7 @@ function Movies(props) {
             ))}
           </Section>
         </SectionsContainer>
-      )}
+      )} */}
     </React.Fragment>
   );
 }
