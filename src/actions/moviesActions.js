@@ -27,7 +27,7 @@ export const getAllMovies = () => async (dispatch) => {
       apiData.imdb.getList("movie", "popular", 1)
     );
     const mostPopular = popular[0]
-
+    console.log("Se cargo popular")
     dispatch({
       type: movies,
       payload: {mostPopular},
