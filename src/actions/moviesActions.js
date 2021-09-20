@@ -28,6 +28,11 @@ export const getAllMovies = () => async (dispatch) => {
     );
     const mostPopular = popular[0]
 
+    dispatch({
+      type: movies,
+      payload: {mostPopular},
+    });
+
     const nowPlaying = await apiData.imdb.getDataArray(
       10,
       "movie",
@@ -58,6 +63,12 @@ export const getAllMovies = () => async (dispatch) => {
       apiData.imdb.genres.getList("movie", "popularity.desc", 1, 28)
     );
 
+    const animation = await apiData.imdb.getDataArray(
+      10,
+      "movie",
+      apiData.imdb.genres.getList("movie", "popularity.desc", 1, 16)
+    );
+
     const fantasy = await apiData.imdb.getDataArray(
       10,
       "movie",
@@ -66,7 +77,7 @@ export const getAllMovies = () => async (dispatch) => {
 
     dispatch({
       type: movies,
-      payload: {mostPopular, popular, nowPlaying, upcoming, horror, adventure, action, fantasy },
+      payload: { popular, nowPlaying, upcoming, horror, adventure, action, animation, fantasy },
     });
   } catch (err) {
     dispatch({

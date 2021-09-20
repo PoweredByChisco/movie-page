@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import "./styles/Movies.css";
 import FrontMovie from "../components/FrontMovie";
 import GenresContainer from "../components/GenresContainer";
@@ -18,27 +18,24 @@ function Movies(props) {
     console.log("useEffect it happens");
   }, []);
   console.log("Props ", props);
-  console.log("Movies Reducer ", props.loading);
+  console.log("Movies Reducer Loading", props.loading);
 
   // console.log("Antes de cargar ", props.movies.popular);
 
-
- /*  if (props.loading === true) {
-    return <p>Loading</p>;
-  } */
+  if (props.movies.length > 5) {
+    return <h1>COMPONENT</h1>;
+  }
 
   // console.log("Despues de cargar ", props.movies.popular);
-
-
 
   /* console.log("Front Movie ", movies.popularMovies[0]); */
   return (
     <React.Fragment>
-      {props.loading === true  ? (
+      {props.loading === true ? (
         <FrontMovie title="Loading" />
       ) : (
         <FrontMovie {...props.movies.mostPopular} />
-        )}
+      )}
       <GenresContainer />
 
       {myList.length > 0 && (
