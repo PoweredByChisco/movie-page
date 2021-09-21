@@ -20,7 +20,7 @@ function Movies(props) {
 
   return (
     <React.Fragment>
-      {!movies.hasOwnProperty("popular")  ? (
+      {!movies.hasOwnProperty("popular") ? (
         <FrontMovie title="Loading" />
       ) : (
         <FrontMovie {...movies.popular[0]} />
@@ -37,7 +37,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {!movies.hasOwnProperty("nowPlaying")  ? (
+      {!movies.hasOwnProperty("nowPlaying") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="In theathers now">
@@ -49,7 +49,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {!movies.hasOwnProperty("popular")  ? (
+      {!movies.hasOwnProperty("popular") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Popular">
@@ -61,7 +61,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {!movies.hasOwnProperty("upcoming")  ? (
+      {!movies.hasOwnProperty("upcoming") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Upcoming">
@@ -73,7 +73,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {!movies.hasOwnProperty("horror")  ? (
+      {!movies.hasOwnProperty("horror") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Horror">
@@ -85,7 +85,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {!movies.hasOwnProperty("action")  ? (
+      {!movies.hasOwnProperty("action") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Action">
@@ -97,7 +97,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {!movies.hasOwnProperty("animation")  ? (
+      {!movies.hasOwnProperty("animation") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Animation">
@@ -109,7 +109,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {!movies.hasOwnProperty("fantasy")  ? (
+      {!movies.hasOwnProperty("fantasy") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Fantasy">
@@ -121,7 +121,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {!movies.hasOwnProperty("adventure")  ? (
+      {!movies.hasOwnProperty("adventure") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Adventure">
