@@ -14,11 +14,12 @@ import {
   adventureMovies,
   animationMovies,
   fantasyMovies,
+  completeLoadingMovies,
 } from "../actions/types/moviesTypes";
 
 const INITIAL_STATE = {
-  movies: [],
-  loading: false,
+  movies: {},
+  loading: true,
   error: "",
   myList: [],
   searchResult: [],
@@ -29,7 +30,10 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     /* get API */
     case movies:
-      return { ...state, movies: action.payload, loading: false };
+      return {...state, movies: {...state.movies, ...action.payload}}
+
+    case completeLoadingMovies:
+      return {...state, loading: false}
 
     case popularMovies:
       return {

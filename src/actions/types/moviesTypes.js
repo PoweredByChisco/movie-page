@@ -1,4 +1,5 @@
 export const loading = "LOADING_MOVIES";
+export const completeLoadingMovies = "COMPLETE_LOADING_MOVIES"
 export const error = "ERROR_MOVIES";
 export const setMovieData = "SET_MOVIE_DATA";
 export const setFavorite = "SET_FAVORITE";

@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import * as moviesActions from "../actions/moviesActions";
 
 function Movies(props) {
-  const { myList, movies, moviesReducer } = props;
+  const { myList, loading, movies, moviesReducer } = props;
   /* const initialStateMovie = useInitialStateMovie(); */
 
   useEffect(() => {
@@ -22,16 +22,16 @@ function Movies(props) {
 
   // console.log("Antes de cargar ", props.movies.popular);
 
-  if (props.movies.length > 5) {
+ /*  if (props.loading === true) {
     return <h1>COMPONENT</h1>;
-  }
+  } */
 
   // console.log("Despues de cargar ", props.movies.popular);
 
   /* console.log("Front Movie ", movies.popularMovies[0]); */
   return (
     <React.Fragment>
-      {props.loading === true ? (
+      {!movies.mostPopular && loading ? (
         <FrontMovie title="Loading" />
       ) : (
         <FrontMovie {...props.movies.mostPopular} />
@@ -48,7 +48,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {props.loading === true ? (
+      {!movies.nowPlaying && loading ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="In theathers now">
@@ -60,7 +60,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {props.loading === true ? (
+      {!movies.popular && loading ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Popular">
@@ -72,7 +72,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {props.loading === true ? (
+      {!movies.upcoming && loading ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Upcoming">
@@ -84,7 +84,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {props.loading === true ? (
+      {!movies.horror && loading ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Horror">
@@ -96,7 +96,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {props.loading === true ? (
+      {!movies.action && loading ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Action">
@@ -108,7 +108,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {props.loading === true ? (
+      {!movies.animation && loading ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Animation">
@@ -120,7 +120,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {props.loading === true ? (
+      {!movies.fantasy && loading ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Fantasy">
@@ -132,7 +132,7 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {props.loading === true ? (
+      {!movies.adventure && loading ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Adventure">

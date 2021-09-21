@@ -11,12 +11,15 @@ import {
   adventureMovies,
   animationMovies,
   fantasyMovies,
+  completeLoadingMovies,
 } from "./types/moviesTypes";
 import apiData from "../apiData";
 
 /* Get API */
 
 export const getAllMovies = () => async (dispatch) => {
+  const miniState = []
+
   dispatch({
     type: loading,
   });
@@ -30,7 +33,7 @@ export const getAllMovies = () => async (dispatch) => {
     console.log("Se cargo popular")
     dispatch({
       type: movies,
-      payload: {mostPopular},
+      payload: {popular, mostPopular},
     });
 
     const nowPlaying = await apiData.imdb.getDataArray(
@@ -38,47 +41,74 @@ export const getAllMovies = () => async (dispatch) => {
       "movie",
       apiData.imdb.getList("movie", "now_playing", 1)
     );
+    dispatch({
+      type: movies,
+      payload: {nowPlaying},
+    });
 
     const upcoming = await apiData.imdb.getDataArray(
       10,
       "movie",
       apiData.imdb.getList("movie", "upcoming", 1)
     );
+    dispatch({
+      type: movies,
+      payload: {upcoming},
+    });
 
     const horror = await apiData.imdb.getDataArray(
       10,
       "movie",
       apiData.imdb.genres.getList("movie", "popularity.desc", 1, 27)
     );
+    dispatch({
+      type: movies,
+      payload: {horror},
+    });
 
     const adventure = await apiData.imdb.getDataArray(
       10,
       "movie",
       apiData.imdb.genres.getList("movie", "popularity.desc", 1, 12)
     );
+    dispatch({
+      type: movies,
+      payload: {adventure},
+    });
 
     const action = await apiData.imdb.getDataArray(
       10,
       "movie",
       apiData.imdb.genres.getList("movie", "popularity.desc", 1, 28)
     );
+    dispatch({
+      type: movies,
+      payload: {action},
+    });
 
     const animation = await apiData.imdb.getDataArray(
       10,
       "movie",
       apiData.imdb.genres.getList("movie", "popularity.desc", 1, 16)
     );
+    dispatch({
+      type: movies,
+      payload: {animation},
+    });
 
     const fantasy = await apiData.imdb.getDataArray(
       10,
       "movie",
       apiData.imdb.genres.getList("movie", "popularity.desc", 1, 14)
     );
-
     dispatch({
       type: movies,
-      payload: { popular, nowPlaying, upcoming, horror, adventure, action, animation, fantasy },
+      payload: {fantasy},
     });
+
+    dispatch({
+      type: completeLoadingMovies
+    })
   } catch (err) {
     dispatch({
       type: error,
