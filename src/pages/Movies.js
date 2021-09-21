@@ -10,31 +10,20 @@ import { connect } from "react-redux";
 import * as moviesActions from "../actions/moviesActions";
 
 function Movies(props) {
-  const { myList, loading, movies, moviesReducer } = props;
-  /* const initialStateMovie = useInitialStateMovie(); */
+  const { myList, loading, movies } = props;
 
   useEffect(() => {
     props.getAllMovies();
     console.log("useEffect it happens");
   }, []);
   console.log("Props ", props);
-  console.log("Movies Reducer Loading", props.loading);
 
-  // console.log("Antes de cargar ", props.movies.popular);
-
- /*  if (props.loading === true) {
-    return <h1>COMPONENT</h1>;
-  } */
-
-  // console.log("Despues de cargar ", props.movies.popular);
-
-  /* console.log("Front Movie ", movies.popularMovies[0]); */
   return (
     <React.Fragment>
-      {!movies.mostPopular && loading ? (
+      {!movies.hasOwnProperty("popular")  ? (
         <FrontMovie title="Loading" />
       ) : (
-        <FrontMovie {...props.movies.mostPopular} />
+        <FrontMovie {...movies.popular[0]} />
       )}
       <GenresContainer />
 
@@ -48,96 +37,96 @@ function Movies(props) {
         </SectionsContainer>
       )}
 
-      {!movies.nowPlaying && loading ? (
+      {!movies.hasOwnProperty("nowPlaying")  ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="In theathers now">
           <Section>
-            {props.movies.nowPlaying.map((item) => (
+            {movies.nowPlaying.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {!movies.popular && loading ? (
+      {!movies.hasOwnProperty("popular")  ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Popular">
           <Section>
-            {props.movies.popular.map((item) => (
+            {movies.popular.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {!movies.upcoming && loading ? (
+      {!movies.hasOwnProperty("upcoming")  ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Upcoming">
           <Section>
-            {props.movies.upcoming.map((item) => (
+            {movies.upcoming.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {!movies.horror && loading ? (
+      {!movies.hasOwnProperty("horror")  ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Horror">
           <Section>
-            {props.movies.horror.map((item) => (
+            {movies.horror.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {!movies.action && loading ? (
+      {!movies.hasOwnProperty("action")  ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Action">
           <Section>
-            {props.movies.action.map((item) => (
+            {movies.action.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {!movies.animation && loading ? (
+      {!movies.hasOwnProperty("animation")  ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Animation">
           <Section>
-            {props.movies.animation.map((item) => (
+            {movies.animation.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {!movies.fantasy && loading ? (
+      {!movies.hasOwnProperty("fantasy")  ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Fantasy">
           <Section>
-            {props.movies.fantasy.map((item) => (
+            {movies.fantasy.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {!movies.adventure && loading ? (
+      {!movies.hasOwnProperty("adventure")  ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Adventure">
           <Section>
-            {props.movies.adventure.map((item) => (
+            {movies.adventure.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { connect } from "react-redux";
-import { setFavorite, removeFavorite } from "../actions";
+import * as moviesActions from "../actions/moviesActions";
 import "./styles/ModalMovie.css";
 
 function ModalMovie(props) {
@@ -27,7 +27,7 @@ function ModalMovie(props) {
   const imgUrlOriginal = "https://image.tmdb.org/t/p/original/";
 
   const handleDeleteFavorite = (id) => {
-    props.removeFavorite(id);
+    props.setRemoveFavorite(id);
   };
 
   console.log(props);
@@ -77,9 +77,5 @@ function ModalMovie(props) {
   );
 }
 
-const mapStateToProps = {
-  setFavorite,
-  removeFavorite,
-};
 
-export default connect(null, mapStateToProps)(ModalMovie);
+export default connect(null, moviesActions)(ModalMovie);
