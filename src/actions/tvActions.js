@@ -21,7 +21,6 @@ export const getAllSeries = () => async (dispatch) => {
       "tv",
       apiData.imdb.getList("tv", "airing_today", 1)
     );
-    console.log("Se cargo popular");
     dispatch({
       type: series,
       payload: { airingToday },

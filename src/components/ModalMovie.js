@@ -5,17 +5,7 @@ import * as moviesActions from "../actions/moviesActions";
 import "./styles/ModalMovie.css";
 
 function ModalMovie(props) {
-  const {
-    title,
-    backdrop_path,
-    overview,
-    homepage,
-    poster_path,
-    runtime,
-    id,
-
-    isList,
-  } = props;
+  const { id, isList } = props;
   const [listed, setListed] = useState(false);
   const handleSetFavorite = () => {
     props.setFavorite({
@@ -70,12 +60,10 @@ function ModalMovie(props) {
               )}
             </>
           )}
-          {/* {!listed && <h1>Hola</h1>} */}
         </div>
       </div>
     </div>
   );
 }
-
 
 export default connect(null, moviesActions)(ModalMovie);

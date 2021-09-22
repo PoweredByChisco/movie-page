@@ -1,7 +1,5 @@
 import React from "react";
 import "./styles/Sections.css";
-import Movie from "./Movie";
-
 function Section({children}) {
 
 

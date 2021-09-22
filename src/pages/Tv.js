@@ -2,18 +2,19 @@ import React, { useEffect } from "react";
 import FrontSerie from "../components/FrontSerie";
 import SectionsContainer from "../components/SectionsContainer";
 import Section from "../components/Section";
-import useInitialStateTv from "../hooks/useInitalStateTv";
 import Serie from "../components/Serie";
 import "./styles/Movies.css";
 import { connect } from "react-redux";
 import * as tvActions from "../actions/tvActions";
 
 function Tv(props) {
-  const { myList, loading, series } = props;
+  const { series } = props.tvReducer;
+  const { myList } = props.moviesReducer;
 
   useEffect(() => {
     props.getAllSeries();
     console.log("useEffect it happens");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log("Props ", props);
 
@@ -122,8 +123,8 @@ function Tv(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return state.tvReducer;
+const mapStateToProps = ({ tvReducer, moviesReducer }) => {
+  return { tvReducer, moviesReducer };
 };
 
 export default connect(mapStateToProps, tvActions)(Tv);

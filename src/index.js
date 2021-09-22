@@ -5,15 +5,9 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import App from "./routes/App";
 import reducers from "./reducers";
-import useInitialStateMovie from "./hooks/useInitialStateMovie";
 import "./global.css";
 import reduxThunk from "redux-thunk";
 
-const initialState = {
-  movies: {},
-  myList: [],
-  searchResult: {},
-};
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

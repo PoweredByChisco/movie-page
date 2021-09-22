@@ -1,22 +1,21 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 import "./styles/Movies.css";
 import FrontMovie from "../components/FrontMovie";
 import GenresContainer from "../components/GenresContainer";
 import SectionsContainer from "../components/SectionsContainer";
-/* import useInitialStateMovie from "../hooks/useInitialStateMovie"; */
 import Section from "../components/Section";
 import Movie from "../components/Movie";
 import { connect } from "react-redux";
 import * as moviesActions from "../actions/moviesActions";
 
 function Movies(props) {
-  const { myList, loading, movies } = props;
+  const { myList, movies } = props;
 
   useEffect(() => {
     props.getAllMovies();
     console.log("useEffect it happens");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log("Props ", props);
 
   return (
     <React.Fragment>
