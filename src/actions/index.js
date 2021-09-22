@@ -1,7 +1,8 @@
 export const actions = {
   setMovieData: "SET_MOVIE_DATA",
   setFavorite: "SET_FAVORITE",
-  removeFavorite: "REMOVE_FAVORITE"
+  removeFavorite: "REMOVE_FAVORITE",
+  getSearch: "GET_SEARCH"
 };
 
 export const setMovieData = (payload) => ({
@@ -18,4 +19,9 @@ export const removeFavorite = (payload) => ({
   type: actions.removeFavorite,
   payload,
 });
+
+export const getSearch = (payload) => ({
+  type: actions.getSearch,
+  payload,
+})
 

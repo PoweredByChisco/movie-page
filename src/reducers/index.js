@@ -1,29 +1,9 @@
-import { actions } from "../actions";
+import { combineReducers } from "redux"; /* Combinara los reducers que le pasemos como parametro */
+import moviesReducer from "./moviesReducer";
+import tvReducer from "./tvReducer";
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case actions.setMovieData:
-      return {
-        ...state,
-        movies: action.payload,
-      };
 
-    case actions.setFavorite:
-      const exist = state.myList.find((item) => item.id === action.payload.id);
-      if (exist) return { ...state };
-      return {
-        myList: [...state.myList, action.payload]
-      };
-    
-      case actions.removeFavorite:
-        return {
-          ...state,
-          myList: state.myList.filter((items) => items.id !== action.payload),
-        }
-
-    default:
-      return state;
-  }
-};
-
-export default reducer;
+export default combineReducers({
+  moviesReducer,
+  tvReducer
+})

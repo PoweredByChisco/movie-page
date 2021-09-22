@@ -5,7 +5,7 @@ import GenreBadge from "./GenreBadge";
 
 class GenresContainer extends React.Component {
   render() {
-    const imageUrl = "https://image.tmdb.org/t/p/w500/";
+    /* const imageUrl = "https://image.tmdb.org/t/p/w500/"; */
     return (
       <div className="genres-container">
         <Link to="/workingOn">

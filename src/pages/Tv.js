@@ -1,22 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FrontSerie from "../components/FrontSerie";
 import SectionsContainer from "../components/SectionsContainer";
 import Section from "../components/Section";
-import useInitialStateTv from "../hooks/useInitalStateTv";
 import Serie from "../components/Serie";
 import "./styles/Movies.css";
 import { connect } from "react-redux";
+import * as tvActions from "../actions/tvActions";
 
-function Tv({ myList }) {
-  const initialStateTv = useInitialStateTv();
-  console.log(initialStateTv);
+function Tv(props) {
+  const { series } = props.tvReducer;
+  const { myList } = props.moviesReducer;
+
+  useEffect(() => {
+    props.getAllSeries();
+    console.log("useEffect it happens");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  console.log("Props ", props);
 
   return (
     <>
-      {initialStateTv.popular.length === 0 ? (
+      {!series.hasOwnProperty("popular") ? (
         <FrontSerie title="Loading" />
       ) : (
-        <FrontSerie {...initialStateTv.popular[0]} />
+        <FrontSerie {...series.popular[0]} />
       )}
 
       {/* Sections */}
@@ -29,84 +36,84 @@ function Tv({ myList }) {
           </Section>
         </SectionsContainer>
       )}
-      {initialStateTv.airingToday.length === 0 ? (
+      {!series.hasOwnProperty("airingToday") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Airing Today">
           <Section>
-            {initialStateTv.airingToday.map((item) => (
+            {series.airingToday.map((item) => (
               <Serie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateTv.popular.length === 0 ? (
+      {!series.hasOwnProperty("popular") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Popular">
           <Section>
-            {initialStateTv.popular.map((item) => (
+            {series.popular.map((item) => (
               <Serie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateTv.actionAdventure.length === 0 ? (
+      {!series.hasOwnProperty("actionAdventure") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Action and Adventure">
           <Section>
-            {initialStateTv.actionAdventure.map((item) => (
+            {series.actionAdventure.map((item) => (
               <Serie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateTv.animation.length === 0 ? (
+      {!series.hasOwnProperty("animation") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Animation">
           <Section>
-            {initialStateTv.animation.map((item) => (
+            {series.animation.map((item) => (
               <Serie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateTv.documentary.length === 0 ? (
+      {!series.hasOwnProperty("documentary") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Documentary">
           <Section>
-            {initialStateTv.documentary.map((item) => (
+            {series.documentary.map((item) => (
               <Serie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateTv.scifi.length === 0 ? (
+      {!series.hasOwnProperty("scifi") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Scifi">
           <Section>
-            {initialStateTv.scifi.map((item) => (
+            {series.scifi.map((item) => (
               <Serie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateTv.comedy.length === 0 ? (
+      {!series.hasOwnProperty("comedy") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Comedy">
           <Section>
-            {initialStateTv.comedy.map((item) => (
+            {series.comedy.map((item) => (
               <Serie key={item.id} {...item} />
             ))}
           </Section>
@@ -116,8 +123,8 @@ function Tv({ myList }) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return { myList: state.myList };
+const mapStateToProps = ({ tvReducer, moviesReducer }) => {
+  return { tvReducer, moviesReducer };
 };
 
-export default connect(mapStateToProps, null)(Tv);
+export default connect(mapStateToProps, tvActions)(Tv);

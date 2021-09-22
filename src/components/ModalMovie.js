@@ -1,21 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { connect } from "react-redux";
-import { setFavorite, removeFavorite } from "../actions";
+import * as moviesActions from "../actions/moviesActions";
 import "./styles/ModalMovie.css";
 
 function ModalMovie(props) {
-  const {
-    title,
-    backdrop_path,
-    overview,
-    homepage,
-    poster_path,
-    runtime,
-    id,
-
-    isList,
-  } = props;
+  const { id, isList } = props;
   const [listed, setListed] = useState(false);
   const handleSetFavorite = () => {
     props.setFavorite({
@@ -27,7 +17,7 @@ function ModalMovie(props) {
   const imgUrlOriginal = "https://image.tmdb.org/t/p/original/";
 
   const handleDeleteFavorite = (id) => {
-    props.removeFavorite(id);
+    props.setRemoveFavorite(id);
   };
 
   console.log(props);
@@ -70,16 +60,10 @@ function ModalMovie(props) {
               )}
             </>
           )}
-          {/* {!listed && <h1>Hola</h1>} */}
         </div>
       </div>
     </div>
   );
 }
 
-const mapStateToProps = {
-  setFavorite,
-  removeFavorite,
-};
-
-export default connect(null, mapStateToProps)(ModalMovie);
+export default connect(null, moviesActions)(ModalMovie);

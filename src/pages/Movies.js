@@ -1,25 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./styles/Movies.css";
 import FrontMovie from "../components/FrontMovie";
 import GenresContainer from "../components/GenresContainer";
 import SectionsContainer from "../components/SectionsContainer";
-import useInitialStateMovie from "../hooks/useInitialStateMovie";
 import Section from "../components/Section";
 import Movie from "../components/Movie";
 import { connect } from "react-redux";
+import * as moviesActions from "../actions/moviesActions";
 
-function Movies({ myList }) {
-  const initialStateMovie = useInitialStateMovie();
+function Movies(props) {
+  const { myList, movies } = props;
+
+  useEffect(() => {
+    props.getAllMovies();
+    console.log("useEffect it happens");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <React.Fragment>
-      {initialStateMovie.popular.length === 0 ? (
+      {!movies.hasOwnProperty("popular") ? (
         <FrontMovie title="Loading" />
       ) : (
-        <FrontMovie {...initialStateMovie.popular[0]} />
+        <FrontMovie {...movies.popular[0]} />
       )}
       <GenresContainer />
-      {/* Sections */}
+
       {myList.length > 0 && (
         <SectionsContainer title="Watch List">
           <Section>
@@ -30,96 +36,96 @@ function Movies({ myList }) {
         </SectionsContainer>
       )}
 
-      {initialStateMovie.nowPlaying.length === 0 ? (
+      {!movies.hasOwnProperty("nowPlaying") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="In theathers now">
           <Section>
-            {initialStateMovie.nowPlaying.map((item) => (
+            {movies.nowPlaying.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.popular.length === 0 ? (
+      {!movies.hasOwnProperty("popular") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Popular">
           <Section>
-            {initialStateMovie.popular.map((item) => (
+            {movies.popular.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.upcoming.length === 0 ? (
+      {!movies.hasOwnProperty("upcoming") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Upcoming">
           <Section>
-            {initialStateMovie.upcoming.map((item) => (
+            {movies.upcoming.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.horror.length === 0 ? (
+      {!movies.hasOwnProperty("horror") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Horror">
           <Section>
-            {initialStateMovie.horror.map((item) => (
+            {movies.horror.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.action.length === 0 ? (
+      {!movies.hasOwnProperty("action") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Action">
           <Section>
-            {initialStateMovie.action.map((item) => (
+            {movies.action.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.animation.length === 0 ? (
+      {!movies.hasOwnProperty("animation") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Animation">
           <Section>
-            {initialStateMovie.animation.map((item) => (
+            {movies.animation.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.fantasy.length === 0 ? (
+      {!movies.hasOwnProperty("fantasy") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Fantasy">
           <Section>
-            {initialStateMovie.fantasy.map((item) => (
+            {movies.fantasy.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
         </SectionsContainer>
       )}
 
-      {initialStateMovie.adventure.length === 0 ? (
+      {!movies.hasOwnProperty("adventure") ? (
         <SectionsContainer title="Loading" />
       ) : (
         <SectionsContainer title="Adventure">
           <Section>
-            {initialStateMovie.adventure.map((item) => (
+            {movies.adventure.map((item) => (
               <Movie key={item.id} {...item} />
             ))}
           </Section>
@@ -130,9 +136,7 @@ function Movies({ myList }) {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    myList: state.myList,
-  };
+  return state.moviesReducer;
 };
 
-export default connect(mapStateToProps, null)(Movies);
+export default connect(mapStateToProps, moviesActions)(Movies);

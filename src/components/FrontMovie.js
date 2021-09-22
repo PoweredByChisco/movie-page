@@ -1,12 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./styles/FrontMovie.css";
-import { setFavorite } from "../actions";
 import { useState } from "react";
+import * as moviesActions from "../actions/moviesActions";
 
 const FrontMovie = (props) => {
-  const { title, backdrop_path, overview, homepage, poster_path, runtime, id } =
-    props;
+  const { title, backdrop_path, overview, homepage } = props;
   const [listed, setListed] = useState(false);
   const handleSetFavorite = () => {
     props.setFavorite({ ...props });
@@ -41,8 +40,4 @@ const FrontMovie = (props) => {
   );
 };
 
-const mapDispatchToProps = {
-  setFavorite,
-};
-
-export default connect(null, mapDispatchToProps)(FrontMovie);
+export default connect(null, moviesActions)(FrontMovie);
