@@ -3,10 +3,14 @@
   display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
-  padding: 20px; }
+  padding: 20px;
+}
 
 /* Desktop */
+
 @media (min-width: 920px) {
   .section {
     overflow-x: scroll;
-    overflow-y: hidden; } }
+    overflow-y: hidden;
+  }
+}

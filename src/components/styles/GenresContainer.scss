@@ -3,10 +3,13 @@
   margin-left: 25px;
   display: flex;
   overflow-x: scroll;
-  overflow-y: hidden; }
+  overflow-y: hidden;
+}
 
 /* Desktop */
+
 @media (min-width: 920px) {
+
   .genres-container {
     display: flex;
     justify-content: space-between;
@@ -14,4 +17,7 @@
     overflow-x: scroll;
     overflow-y: hidden;
     width: 100%;
-    height: 226.67px; } }
+    height: 226.67px;
+  }
+
+}
