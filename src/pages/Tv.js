@@ -12,11 +12,12 @@ function Tv(props) {
   const { myList } = props.moviesReducer;
 
   useEffect(() => {
-    props.getAllSeries();
+    if(!Object.keys(series).length){
+      props.getAllSeries();
+    }
     console.log("useEffect it happens");
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log("Props ", props);
 
   return (
     <>

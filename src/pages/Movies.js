@@ -12,7 +12,9 @@ function Movies(props) {
   const { myList, movies } = props;
 
   useEffect(() => {
-    props.getAllMovies();
+    if(!Object.keys(movies).length){
+      props.getAllMovies();
+    }
     console.log("useEffect it happens");
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
