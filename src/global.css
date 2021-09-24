@@ -81,7 +81,7 @@ p {
 /* Tablet */
 /* Desktop */
 @media (min-width: 920px) {
-  body{
+  body {
     overflow-x: hidden;
   }
 
@@ -92,8 +92,8 @@ p {
   }
 
   *::-webkit-scrollbar {
-    width: 6px;
-    background-color: #transparent;
+    width: 8px;
+    background-color: transparent;
   }
 
   *::-webkit-scrollbar-thumb {
