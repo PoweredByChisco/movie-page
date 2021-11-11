@@ -1,30 +1,22 @@
-.main {
+.search {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 300px;
   border-radius: 0px 0px 40px 40px;
 }
 
-.main .isHome {
-  width: 70%;
-}
-
-.main__title {
-  color: white;
-  font-size: 25px;
-}
-
-.input {
-  background-color: rgba(255, 0, 0, 0.1);
+.search__input {
+  margin: 0 25px 20px;
+  background-color: rgba(209, 209, 209, 0.267);
   border: 2px solid white;
   border-radius: 25px;
   color: white;
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   font-size: 16px;
   height: 50px;
-  margin-bottom: 20px;
+  width: 75%;
+  max-width: 750px;
   outline: none;
   padding: 0px 20px;
 }

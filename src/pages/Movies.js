@@ -7,6 +7,7 @@ import Section from "../components/Section";
 import Movie from "../components/Movie";
 import { connect } from "react-redux";
 import * as moviesActions from "../actions/moviesActions";
+import Search from "../components/Search";
 
 function Movies(props) {
   const { myList, movies } = props;
@@ -27,6 +28,7 @@ function Movies(props) {
         <FrontMovie {...movies.popular[0]} />
       )}
       <GenresContainer />
+      <Search />
 
       {myList.length > 0 && (
         <SectionsContainer title="Watch List">
