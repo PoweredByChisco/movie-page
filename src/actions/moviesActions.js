@@ -5,7 +5,8 @@ import {
   setMovieData,
   completeLoadingMovies,
   favoriteMovies,
-  removeFavoriteMovies
+  removeFavoriteMovies,
+  searchMovies
 } from "./types/moviesTypes";
 import apiData from "../apiData";
 
@@ -126,3 +127,8 @@ export const setRemoveFavorite = (payload) => ({
   type: removeFavoriteMovies,
   payload,
 });
+
+export const getSearch = (payload) => ({
+  type: searchMovies,
+  payload,
+})

@@ -16,7 +16,6 @@ function Movies(props) {
     if(!Object.keys(movies).length){
       props.getAllMovies();
     }
-    console.log("useEffect it happens");
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

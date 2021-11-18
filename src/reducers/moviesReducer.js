@@ -55,10 +55,10 @@ export default (state = INITIAL_STATE, action) => {
           searchResult: [],
         };
       }
-
+      
       return {
         ...state,
-        searchResult: action.payload,
+        searchResult:[ action.payload],
       };
 
     case setMovieData:
