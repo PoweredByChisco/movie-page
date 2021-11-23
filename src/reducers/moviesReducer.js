@@ -6,7 +6,7 @@ import {
   completeLoadingMovies,
   favoriteMovies,
   removeFavoriteMovies,
-  searchMovies
+  searchMovies,
 } from "../actions/types/moviesTypes";
 
 const INITIAL_STATE = {
@@ -22,10 +22,10 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     /* get API */
     case movies:
-      return {...state, movies: {...state.movies, ...action.payload}}
+      return { ...state, movies: { ...state.movies, ...action.payload } };
 
     case completeLoadingMovies:
-      return {...state, loading: false}
+      return { ...state, loading: false };
 
     /* --- */
     case loading:

@@ -1,17 +1,16 @@
-import React from "react";
-import { connect } from "react-redux";
-import "./styles/FrontMovie.css";
-import { useState } from "react";
-import * as moviesActions from "../actions/moviesActions";
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import './styles/FrontMovie.css'
+import * as moviesActions from '../actions/moviesActions'
 
 const FrontMovie = (props) => {
-  const { title, backdrop_path, overview, homepage } = props;
-  const [listed, setListed] = useState(false);
+  const { title, backdrop_path, overview, homepage } = props
+  const [listed, setListed] = useState(false)
   const handleSetFavorite = () => {
-    props.setFavorite({ ...props });
-    setListed(true);
-  };
-  const url = "https://image.tmdb.org/t/p/original";
+    props.setFavorite({ ...props })
+    setListed(true)
+  }
+  const url = 'https://image.tmdb.org/t/p/original'
 
   return (
     <React.Fragment>
@@ -37,7 +36,7 @@ const FrontMovie = (props) => {
         </div>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default connect(null, moviesActions)(FrontMovie);
+export default connect(null, moviesActions)(FrontMovie)
